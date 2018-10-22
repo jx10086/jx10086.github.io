@@ -1,0 +1,5 @@
+https://www.ytniu.com/2018/10/mysql增加远程访问用户.html
+https://www.ytniu.com/2018/10/MySQL重设root密码.html
+https://www.ytniu.com/2018/10/tomcat发布脚本.html
+https://www.ytniu.com/2018/10/SED单行脚本快速参考（Unix-流编辑器）.html
+https://www.ytniu.com/2018/10/搜狐基于Docker-Kubernetes的一站式运维管理实践.html
