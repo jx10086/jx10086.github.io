@@ -1,5 +1,5 @@
-https://www.ytniu.com/2018/10/mysql增加远程访问用户.html
-https://www.ytniu.com/2018/10/MySQL重设root密码.html
-https://www.ytniu.com/2018/10/tomcat发布脚本.html
-https://www.ytniu.com/2018/10/SED单行脚本快速参考（Unix-流编辑器）.html
-https://www.ytniu.com/2018/10/搜狐基于Docker-Kubernetes的一站式运维管理实践.html
+https://www.ytniu.com/2018/10/软件公司的两种管理方式.html
+https://www.ytniu.com/2018/10/CENTOS7下设置oracle-11g自启动.html
+https://www.ytniu.com/2018/10/运维经典面试题.html
+https://www.ytniu.com/2018/10/运维不仅仅是Linux.html
+https://www.ytniu.com/2018/10/负载均衡原理的解析.html

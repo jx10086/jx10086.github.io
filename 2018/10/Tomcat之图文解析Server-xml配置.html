@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SRE 随笔 - Jixiang's Blog</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
+    <meta name="description" content="一个SRE攻城狮的随手笔记、乱七八糟的，凑合看吧。,"> 
+    <meta name="author" content="Ji Xiang"> 
+    <link rel="alternative" href="atom.xml" title="SRE 随笔" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">Tomcat之图文解析Server.xml配置</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">Tomcat之图文解析Server.xml配置</h1>
+        <div class="stuff">
+            <span>十月 22, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="Tomcat之图文解析Server-xml配置"><a href="#Tomcat之图文解析Server-xml配置" class="headerlink" title="Tomcat之图文解析Server.xml配置"></a>Tomcat之图文解析Server.xml配置</h1><p>本文即将介绍的是Server.xml - Tomcat的主配置文件。该文件存放在安装目录下的conf文件夹中。为了让大家有个直观的认识，在此将Tomcat7的默认配置摘录如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&apos;1.0&apos; encoding=&apos;utf-8&apos;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot;&gt;</span><br><span class="line"></span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.startup.VersionLoggerListener&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.AprLifecycleListener&quot; SSLEngine=&quot;on&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.JasperListener&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.JreMemoryLeakPreventionListener&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;</span><br><span class="line">  &lt;Listener className=&quot;org.apache.catalina.core.ThreadLocalLeakPreventionListener&quot; /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;GlobalNamingResources&gt;</span><br><span class="line">    &lt;Resource name=&quot;UserDatabase&quot; auth=&quot;Container&quot;</span><br><span class="line">              type=&quot;org.apache.catalina.UserDatabase&quot;</span><br><span class="line">              description=&quot;User database that can be updated and saved&quot;</span><br><span class="line">              factory=&quot;org.apache.catalina.users.MemoryUserDatabaseFactory&quot;</span><br><span class="line">              pathname=&quot;conf/tomcat-users.xml&quot; /&gt;</span><br><span class="line">  &lt;/GlobalNamingResources&gt;</span><br><span class="line"></span><br><span class="line">  &lt;Service name=&quot;Catalina&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot;</span><br><span class="line">               connectionTimeout=&quot;20000&quot;</span><br><span class="line">               redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line">    &lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line">    &lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot;&gt;</span><br><span class="line"></span><br><span class="line">		&lt;Realm className=&quot;org.apache.catalina.realm.LockOutRealm&quot;&gt;</span><br><span class="line">        &lt;Realm className=&quot;org.apache.catalina.realm.UserDatabaseRealm&quot;</span><br><span class="line">               resourceName=&quot;UserDatabase&quot;/&gt;</span><br><span class="line">     &lt;/Realm&gt;</span><br><span class="line"></span><br><span class="line">     &lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;</span><br><span class="line">            unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot;&gt;</span><br><span class="line"></span><br><span class="line">				&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;</span><br><span class="line">               prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot;</span><br><span class="line">               pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;</span><br><span class="line">      &lt;/Host&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/Engine&gt;</span><br><span class="line">  &lt;/Service&gt;</span><br><span class="line">&lt;/Server&gt;</span><br></pre></td></tr></table></figure>
+<p>去掉元素属性，稍加整理，配置文件就变成了下面这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server&gt; &lt;!-- 顶级元素 --&gt;</span><br><span class="line">  &lt;Listener/&gt; &lt;!-- 组件 --&gt;</span><br><span class="line">  &lt;GlobalNamingResources/&gt; &lt;!-- 组件 --&gt; </span><br><span class="line">  &lt;Service&gt; &lt;!-- 另一个顶级元素 --&gt;</span><br><span class="line">    &lt;Connector/&gt; &lt;!-- 接头 --&gt;</span><br><span class="line">    &lt;Engine&gt; &lt;!-- 容器 --&gt;</span><br><span class="line">      &lt;Realm/&gt; &lt;!-- 组件 --&gt;</span><br><span class="line">      &lt;Host&gt; &lt;!-- 容器 --&gt;</span><br><span class="line">        &lt;Valve/&gt; &lt;!-- 组件 --&gt;</span><br><span class="line">          &lt;Context&gt;&lt;/Context&gt; &lt;!-- 容器 --&gt;</span><br><span class="line">      &lt;/Host&gt;</span><br><span class="line">    &lt;/Engine&gt;</span><br><span class="line">  &lt;/Service&gt;</span><br><span class="line">&lt;/Server&gt;</span><br></pre></td></tr></table></figure>
+<p>根据Tomcat自身的分类，上面这些元素可以分成四种：</p>
+<ol>
+<li><strong>顶级元素</strong> - 即Server和Service，前者是本配置文件的根节点，后者则起到了一个包裹内部组件的作用。换句话说，它们都属于“单纯的、不具有具体职能的配置节点”。</li>
+<li><strong>容器</strong> - Tomcat内真正负责处理请求并返回结果的组件。</li>
+<li><strong>Connector</strong> - Connector（接头）是一个特殊的组件，如果说整个Tomcat是一堵墙，它就是安装在墙上的插座。外部的客户端通过这些插座来跟Tomcat建立联系。</li>
+<li><strong>嵌套组件</strong> - 这是一些嵌套在各种容器内部的组件，有些可以放在任意一层容器内，例如Listener；有些只能放在固定的位置，例如GlobalNamingResources。</li>
+</ol>
+<p>下面将选择性地介绍这些元素。</p>
+<p><span id="OSC_h1_1"></span></p>
+<h1 id="一、顶级元素"><a href="#一、顶级元素" class="headerlink" title="一、顶级元素"></a>一、顶级元素</h1><p><span id="OSC_h2_2"></span></p>
+<h2 id="1-Server"><a href="#1-Server" class="headerlink" title="1. Server"></a>1. Server</h2><p>一个Tomcat只有一个Server.xml，即一个Tomcat实例只有一个Server。从实现来看，作为Server.xml的根节点，它不是一个容器，它只是单纯地扮演着一个包裹的角色。从命名来看，它又可以是整个Tomcat所有容器和作用于所用容器的组件的混合体。在此，我们把它当做是Tomcat实例本身。</p>
+<p><span id="OSC_h3_3"></span></p>
+<h3 id="★-单机Tomcat实例个数"><a href="#★-单机Tomcat实例个数" class="headerlink" title="★ 单机Tomcat实例个数"></a>★ 单机Tomcat实例个数</h3><p>大部分情况下我们在一台服务器/云服务器上只跑一个tomcat，但也有两种特例：</p>
+<p>一是为了测试，在一台机器上跑多个Tomcat，用以模拟多台服务器多个应用交互的效果。</p>
+<p>二是通过nginx+多个tomcat组成负载均衡集群，以达到以下目的：</p>
+<ol>
+<li>在32位系统上，由于寻址空间、内核预留内存等我们不太需要关心的机制，单个进程可以使用的内存上限大概是1.5G~2G（windows）和2G~3G（linux）。因此，大内存服务器上如果要充分利用内存就只能多开Tomcat。理论上64位系统没有这个问题。</li>
+<li>配置太大的内存可能会降低JVM进行垃圾回收的频率，也就意味着每一次垃圾回收都是一个耗时日久的大工程，甚至可能导致宕机。一般建议单个JVM最大内存不超过1.5G。</li>
+<li>从稳定性上考虑，个别tomcat挂了也不会导致服务下线。</li>
+</ol>
+<p><img src="https://static.oschina.net/uploads/space/2017/0326/123410_QnxP_1032568.png" alt="Nginx+Tomcat"></p>
+<p><span id="OSC_h3_4"></span></p>
+<h3 id="★-Server元素属性"><a href="#★-Server元素属性" class="headerlink" title="★ Server元素属性"></a>★ Server元素属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Server port=&quot;8005&quot; shutdown=&quot;SHUTDOWN&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>Server可配置的属性很少。根据上面摘录的默认配置，Server会侦听localhost的TCP端口8005，当该端口接收到字符串”SHUTDOWN”时，即执行关闭Tomcat操作。</p>
+<p><span id="OSC_h3_5"></span></p>
+<h3 id="★-Server的嵌套组件"><a href="#★-Server的嵌套组件" class="headerlink" title="★ Server的嵌套组件"></a>★ Server的嵌套组件</h3><p>Server有两种特有的组件，一个是GlobalNamingResources（全局命名资源），一个是Service（服务）。除此之外，还可以有Listener（监听器）这种可以作用于不同层次容器的组件。Server默认配置了六种Listener，其作用会在后面介绍。配置在Server这一层的Listener对所有容器起作用。</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0326/124220_L36I_1032568.png" alt="Server元素组件"></p>
+<p><span id="OSC_h2_6"></span></p>
+<h2 id="2-Service"><a href="#2-Service" class="headerlink" title="2. Service"></a>2. Service</h2><p>Service是另一个混合体。一个Service就是一个完整的服务，负责将若干个Connector和一个Engine（引擎）包裹在一起。除此之外，Service还可以配置一个Executor（共享线程池）用于管理所有Connector的线程数量。</p>
+<p><span id="OSC_h3_7"></span></p>
+<h3 id="★-service元素属性"><a href="#★-service元素属性" class="headerlink" title="★ service元素属性"></a>★ service元素属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Service name=&quot;Catalina&quot;&gt;...&lt;/Service&gt;</span><br></pre></td></tr></table></figure>
+<p>Service的属性比Server更少，一般只用到了name这个属性。默认配置定义了一个名为“Catalina”的 Service。什么是Catalina呢？Cataline是一个太平洋小岛的名字，而Tomcat开发团队的一个核心人员Craig McClanahan喜欢这个小岛，所以…</p>
+<p><span id="OSC_h3_8"></span></p>
+<h3 id="★-Service的嵌套组件"><a href="#★-Service的嵌套组件" class="headerlink" title="★ Service的嵌套组件"></a>★ Service的嵌套组件</h3><p><img src="https://static.oschina.net/uploads/space/2017/0326/153509_8gUK_1032568.png" alt="Service元素组件"></p>
+<p>如图所示，Service有Executor、Connector和Engine三种组件。其中，每个Connector负责侦听一个TCP端口，接收相应的请求，并转发给绑定的Engine处理。Engine处理完后，通过Connector把结果返回给客户端。在配置了Executor的情况下，所有Connector的线程受Executor统一管理。</p>
+<p><span id="OSC_h1_9"></span></p>
+<h1 id="二、容器"><a href="#二、容器" class="headerlink" title="二、容器"></a>二、容器</h1><p>Tomcat里有四种层次的容器：Engine、Cluster、Host、Context，从属关系为：</p>
+<p><strong>Context</strong> -&gt; (Cluster in Host) -&gt; <strong>Host</strong> -&gt; (Cluster in Engine) -&gt; <strong>Engine</strong></p>
+<p>具体关系如下图所示：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0326/154725_1ehp_1032568.png" alt="Tomcat容器层次"></p>
+<p><span id="OSC_h2_10"></span></p>
+<h2 id="1-Engine容器"><a href="#1-Engine容器" class="headerlink" title="1. Engine容器"></a>1. Engine容器</h2><p>Engine是Service的请求处理引擎，负责处理所有Connector发过来的请求，并将内部处理完毕的结果返回给Connector。它是最外层的容器。</p>
+<p><span id="OSC_h3_11"></span></p>
+<h3 id="★-Engine元素属性"><a href="#★-Engine元素属性" class="headerlink" title="★ Engine元素属性"></a>★ Engine元素属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Engine name=&quot;Catalina&quot; defaultHost=&quot;localhost&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>■ Engine.name - 引擎的名称</strong></p>
+<p>默认配置定义了一个Engine，和外层的Service一样，也叫Catalina。反正一个Service只有一个Engine，这么起名问题也不大。</p>
+<p><strong>■ Engine.defaultHost - 默认采用哪一个子容器Host来处理请求</strong></p>
+<p><strong>■ Engine.jvmRoute - 一个用于负载均衡场景下的唯一标识符</strong></p>
+<p>默认的负载均衡场景下，Tomcat采用一种被称作粘性session的机制管理session信息。</p>
+<p>粘性session就是将用户“粘”在其中一个Engine上。比方说，客户端刚访问进来时被Nginx转发到Engine#1并完成了登录验证，那么接下来的每次请求都应该转发到这个Engine。如果该机制失效，客户端的后续访问被Nginx转发到Engine#2的话，由于Engine#2并没有该客户端的session信息，将会要求重新登录。</p>
+<p>为了实现粘性session，Engine需要告诉Nginx，某一个session是我处理的，后续这个session都要发给我。方法就是给Engine定义一个唯一的jvmRoute，附在它受理的sessionID上，再返回给Nginx。例如，配置jvmRote=”Engine#1”。更多属性说明请参照官方文档：<a href="http://tomcat.apache.org/tomcat-7.0-doc/config/engine.html" target="_blank" rel="noopener">参考链接</a></p>
+<p><span id="OSC_h3_12"></span></p>
+<h3 id="★-Engine上下文配置"><a href="#★-Engine上下文配置" class="headerlink" title="★ Engine上下文配置"></a>★ Engine上下文配置</h3><p>每一个Engine都在安装目录的conf文件夹下有一个对应的二级目录，例如默认的conf/cataline。相应的，Engine下的每一个Host，都会在Engine对应的二级目录下有一个三级目录，例如默认的conf/cataline/localhost。其路径规则为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conf/&lt;engine_name&gt;/&lt;host_name&gt;</span><br></pre></td></tr></table></figure>
+<p>作用于整个Engine或整个Host的上下文信息可以配置在这些个目录中。该目录可以通过相应容器的xmlBase属性进行修改。</p>
+<p><span id="OSC_h2_13"></span></p>
+<h2 id="2-Host容器"><a href="#2-Host容器" class="headerlink" title="2. Host容器"></a>2. Host容器</h2><p>一个Host就是一个虚拟主机，对应一个或多个域名。</p>
+<p><span id="OSC_h3_14"></span></p>
+<h3 id="★-Host元素属性"><a href="#★-Host元素属性" class="headerlink" title="★ Host元素属性"></a>★ Host元素属性</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;localhost&quot;  appBase=&quot;webapps&quot;</span><br><span class="line">      unpackWARs=&quot;true&quot; autoDeploy=&quot;true&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>■ Host.name - 主机名称（域名）</strong></p>
+<p>默认配置定义了一个名为 localhost 的主机。至少要有一个Host的名称与Engine的defaultHost一致。</p>
+<p>除了域名外，Host可以通过子节点alias来配置别名。别名的作用与域名一致。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host name=&quot;www.a.com&quot; ...&gt;</span><br><span class="line">  ...</span><br><span class="line">  &lt;Alias&gt;a.com&lt;/Alias&gt;</span><br><span class="line">  &lt;Alias&gt;blog.a.com&lt;/Alias&gt;</span><br><span class="line">  &lt;Alias&gt;c.com&lt;/Alias&gt;</span><br><span class="line">  ...</span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
+<p>其作用机制如下图所示：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0326/173213_09Ca_1032568.png" alt="Engine根据域名转发请求"></p>
+<p><strong>■ Host.appBase - 虚拟主机的根目录</strong></p>
+<p>该参数的默认值为webapps。一般情况下，每一个 webapp 的 URL 和它所在的目录名称相同。以webapps目录下的manager和docs两个程序为例（ROOT是个例外）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 目录名即路径名</span><br><span class="line">webapps/manager:http://localhost:8080/manager</span><br><span class="line">webapps/docs:http://localhost:8080/docs</span><br><span class="line"># 特例 - ROOT等于空字符串</span><br><span class="line">webapps/ROOT:http://localhost:8080/</span><br></pre></td></tr></table></figure>
+<p><strong>■ Host.unpackWARs - 放到 webapps 目录下的 WAR-file 是否应该被解压</strong></p>
+<p>如设为false，Tomcat 将会直接从 *.war文件运行应用，但可能导致应用运行变慢。</p>
+<p><strong>■ Host.autoDeploy - 是否自动部署放到 webapps 目录下的应用</strong></p>
+<p><span id="OSC_h2_15"></span></p>
+<h2 id="3-Context容器"><a href="#3-Context容器" class="headerlink" title="3. Context容器"></a>3. Context容器</h2><p>Context代表Host下面的一个虚拟目录。</p>
+<p>在不配置Context的情况下是这样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">If HostName:my.oshina.net</span><br><span class="line">-&gt; HostUrl:http://my.oschina.net/</span><br><span class="line">So Brower:http://my.oschina.net/mzdbxqh</span><br><span class="line">-&gt; 访问:webapps/mzdbxqh</span><br></pre></td></tr></table></figure>
+<p>现在配置一个Context，同样访问博客域名，就变成了访问”D:/mzdbxqh”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path=&quot;mzdbxqh&quot; docBase=&quot;D:/mzdbxqh&quot; debug=&quot;0&quot; reloadable=&quot;true&quot; crossContext=&quot;true&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><span id="OSC_h3_16"></span></p>
+<h3 id="★-Context元素属性"><a href="#★-Context元素属性" class="headerlink" title="★ Context元素属性"></a>★ Context元素属性</h3><p><strong>■ Context.docBase - 应用程序的路径或者是WAR文件存放的路径</strong></p>
+<p><strong>■ Context.path - 此web应用程序的上下文路径</strong></p>
+<p>配置后，Context的访问url为：<a href="http://localhost:8080/path/" target="_blank" rel="noopener">http://localhost:8080/path/</a></p>
+<p>path为空的话，访问url为：<a href="http://localhost:8080/" target="_blank" rel="noopener">http://localhost:8080/</a></p>
+<p><strong>■ Context.reloadable - 是否支持热部署</strong></p>
+<p>如果为true，则tomcat会自动检测应用程序的/WEB-INF/lib 和/WEB-INF/classes目录的变化，并通过类加载器重新加载class文件，以实现在不重启tomcat的情况下重新部署。</p>
+<p>因为配置文件基本是在web程序启动时一次性载入内存的，故一般来说Tomcat的热部署对配置文件无效。另外，只有新创建实例时才会向类加载器请求重新加载过的class，因此，Tomcat的热部署对于使用Spring管理的单例也是无效的。这两种情况需要web应用程序配合着写热部署的业务逻辑才能实现。</p>
+<p>关于类加载器的相关内容可以阅读<a href="https://my.oschina.net/mzdbxqh/blog/847313" target="_blank" rel="noopener">前面的章节</a>。</p>
+<p><strong>■ Context.crossContext - 不同context是否共享session</strong></p>
+<p>注意，这个跨应用共享session跟Cluster集群是不一样的。前者是指可以通过ServletContext.getContext()交叉访问其他Context的session，后者默认配置下是采用服务器session复制的方式，将每一个节点的session变动复制到所有节点。</p>
+<p>更多属性说明请参照官方文档：<a href="http://tomcat.apache.org/tomcat-7.0-doc/config/context.html" target="_blank" rel="noopener">参考链接</a></p>
+<p><span id="OSC_h2_17"></span></p>
+<h2 id="4-Cluster容器"><a href="#4-Cluster容器" class="headerlink" title="4. Cluster容器"></a>4. Cluster容器</h2><p>Tomcat的Cluster是一个集群容器。它的集群策略是复制session，把集群内一个容器的session变动通过广播复制到其他所有容器上。Cluster可配置在Engine或Host内。如果读者需要使用该容器，一般来说已经不是新手了，请自行阅读官方文档：<a href="http://tomcat.apache.org/tomcat-7.0-doc/config/cluster.html" target="_blank" rel="noopener">参考链接</a></p>
+<p>此外，复制session的模式因为对网络（广播复制）和内存（每一个JVM实例都要保存所有在线用户的session）的负担较大，在大型分布式场景下一般采用session共享的方式。具体可以了解一下Spring Session。以上三种session管理方式的对比如下图所示：</p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0328/010845_pfJT_1032568.png" alt="session管理"></p>
+<p><span id="OSC_h1_18"></span></p>
+<h1 id="三、其他"><a href="#三、其他" class="headerlink" title="三、其他"></a>三、其他</h1><p><span id="OSC_h2_19"></span></p>
+<h2 id="1-Connector组件"><a href="#1-Connector组件" class="headerlink" title="1. Connector组件"></a>1. Connector组件</h2><p>开头说过，Connector就是墙上的插座，负责侦听一个具体的TCP端口，并通过该端口处理Engine与客户端之间的交互。默认配置定义了两个 Connector：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--HTTP/1.1：处理 HTTP 请求，使得 Tomcat 成为了一个 HTTP 服务器。客户端可以通过 Connector 向服务器发送 HTTP 请求，接收服务器端的 HTTP 响应信息。--&gt;</span><br><span class="line">&lt;Connector port=&quot;8080&quot; protocol=&quot;HTTP/1.1&quot; connectionTimeout=&quot;20000&quot; redirectPort=&quot;8443&quot; /&gt;</span><br><span class="line">&lt;!--connectionTimeOut 属性定义了这个 connector 在链接获得同意之后，获得请求 URI line（请求信息）响应的最大等待时间毫秒数。默认为20秒。redirect 属性会把 SSL 请求重定向到 TCP 的8443端口。--&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--AJP/1.3：Apache JServ Protocol connector 处理 Tomcat 服务器与 Apache HTTP 服务器之间的交互。--&gt;</span><br><span class="line">&lt;Connector port=&quot;8009&quot; protocol=&quot;AJP/1.3&quot; redirectPort=&quot;8443&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>更多Connector和Executor线程池的配置会在Tomcat性能调优的章节进行说明。</p>
+<p><span id="OSC_h2_20"></span></p>
+<h2 id="2-Valve组件"><a href="#2-Valve组件" class="headerlink" title="2. Valve组件"></a>2. Valve组件</h2><p>Valve的中文含义是阀门，可以简单地理解为Tomcat的拦截器。它负责在请求发送到应用之前拦截HTTP请求，可以定义在任何容器中。默认配置中定义了一个AccessLogValve，负责拦截HTTP请求，并写入到日志文件中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;Valve className=&quot;org.apache.catalina.valves.AccessLogValve&quot; directory=&quot;logs&quot;</span><br><span class="line">       prefix=&quot;localhost_access_log.&quot; suffix=&quot;.txt&quot;</span><br><span class="line">       pattern=&quot;%h %l %u %t &amp;quot;%r&amp;quot; %s %b&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><span id="OSC_h2_21"></span></p>
+<h2 id="3-Listener组件"><a href="#3-Listener组件" class="headerlink" title="3. Listener组件"></a>3. Listener组件</h2><p>Listener即监听器，负责监听服务器端的行为。此处需要了解的监听器有两个：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--作用于 Jasper JSP 引擎，该引擎负责对更新后的 JSP 页面进行重编译。--&gt;</span><br><span class="line">&lt;Listener className=&quot;org.apache.catalina.core.JasperListener&quot; /&gt;</span><br><span class="line">&lt;!--作用于全局资源，保证 JNDI 对资源的可达性，比如数据库。--&gt;</span><br><span class="line">&lt;Listener className=&quot;org.apache.catalina.mbeans.GlobalResourcesLifecycleListener&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p><span id="OSC_h2_22"></span></p>
+<h2 id="4-Realm组件"><a href="#4-Realm组件" class="headerlink" title="4. Realm组件"></a>4. Realm组件</h2><p>Realm提供了一种用户密码与web应用的映射关系。tomcat自带的manager管理工具就是根据conf/tomcat-users.xml中定义的账号来实现登录的。我们一般通过Shiro来实现，此处不作解释。</p>
+<p><span id="OSC_h2_23"></span></p>
+<h2 id="5-GlobalNamingResources组件"><a href="#5-GlobalNamingResources组件" class="headerlink" title="5. GlobalNamingResources组件"></a>5. GlobalNamingResources组件</h2><p>全局命名资源（过JNDI实现，相当于一台交换机，可以通过地址名访问各种系统外部资源。例如，通过一个名称，访问预设置好的一个Mysql连接池）。默认定义了一个名称为UserDatabase的JNDI，通过“conf/tomcat-users.xml”得到了一个用于用户授权的内存数据库。我们一般通过Spring进行管理，此处不作解释。</p>
+<p><span id="OSC_h1_24"></span></p>
+<h1 id="四、Tomcat处理Http请求的过程"><a href="#四、Tomcat处理Http请求的过程" class="headerlink" title="四、Tomcat处理Http请求的过程"></a>四、Tomcat处理Http请求的过程</h1><p>请求地址为：<a href="http://my.oschina.net/mzdbxqh" target="_blank" rel="noopener">http://my.oschina.net/mzdbxqh</a></p>
+<ol>
+<li>请求通过DNS发送到指定主机的80端口，被负责侦听80端口的HTTP/1.1 Connector拦截</li>
+<li>Connector把请求转发给所在的Service的Engine，并等待Engine的回应</li>
+<li>Engine获得请求my.oschina.net/mzdbxqh，匹配它所拥有的所有虚拟主机Host</li>
+<li>Engine匹配到名为my.oschina.net的Host<ul>
+<li>如果匹配不到就交给defaultHost</li>
+</ul>
+</li>
+<li>匹配的Host获得请求/mzdbxqh，匹配它所拥有的所有Context</li>
+<li>Host匹配到path为mzdbxqh的Context<ul>
+<li>如果匹配不到就尝试匹配Path为””的Context</li>
+<li>如果还匹配不到就尝试到appBase参数对应的目录下找mzdbxqh文件夹</li>
+</ul>
+</li>
+<li>匹配的Context获得请求/，匹配web.xml中配置的Servlet<ul>
+<li>如果匹配不到就尝试匹配Welcome-file-list</li>
+</ul>
+</li>
+<li>Context匹配到url-pattern为”/“的servlet，对应于org.springframework.web.servlet.DispatcherServlet</li>
+<li>SpringMVC处理请求（后面章节再说），返回HttpServletResponse</li>
+<li>Context把HttpServletResponse对象返回给Host</li>
+<li>Host把HttpServletResponse对象返回给Engine</li>
+<li>Engine把HttpServletResponse对象返回给Connector</li>
+<li>Connector把HttpServletResponse对象返回给客户端</li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Tomcat之图文解析Server-xml配置"><span class="toc-number">1.</span> <span class="toc-text">Tomcat之图文解析Server.xml配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一、顶级元素"><span class="toc-number">2.</span> <span class="toc-text">一、顶级元素</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Server"><span class="toc-number">2.1.</span> <span class="toc-text">1. Server</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#★-单机Tomcat实例个数"><span class="toc-number">2.1.1.</span> <span class="toc-text">★ 单机Tomcat实例个数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Server元素属性"><span class="toc-number">2.1.2.</span> <span class="toc-text">★ Server元素属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Server的嵌套组件"><span class="toc-number">2.1.3.</span> <span class="toc-text">★ Server的嵌套组件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Service"><span class="toc-number">2.2.</span> <span class="toc-text">2. Service</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#★-service元素属性"><span class="toc-number">2.2.1.</span> <span class="toc-text">★ service元素属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Service的嵌套组件"><span class="toc-number">2.2.2.</span> <span class="toc-text">★ Service的嵌套组件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、容器"><span class="toc-number">3.</span> <span class="toc-text">二、容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Engine容器"><span class="toc-number">3.1.</span> <span class="toc-text">1. Engine容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Engine元素属性"><span class="toc-number">3.1.1.</span> <span class="toc-text">★ Engine元素属性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Engine上下文配置"><span class="toc-number">3.1.2.</span> <span class="toc-text">★ Engine上下文配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Host容器"><span class="toc-number">3.2.</span> <span class="toc-text">2. Host容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Host元素属性"><span class="toc-number">3.2.1.</span> <span class="toc-text">★ Host元素属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Context容器"><span class="toc-number">3.3.</span> <span class="toc-text">3. Context容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#★-Context元素属性"><span class="toc-number">3.3.1.</span> <span class="toc-text">★ Context元素属性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Cluster容器"><span class="toc-number">3.4.</span> <span class="toc-text">4. Cluster容器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、其他"><span class="toc-number">4.</span> <span class="toc-text">三、其他</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Connector组件"><span class="toc-number">4.1.</span> <span class="toc-text">1. Connector组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Valve组件"><span class="toc-number">4.2.</span> <span class="toc-text">2. Valve组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Listener组件"><span class="toc-number">4.3.</span> <span class="toc-text">3. Listener组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Realm组件"><span class="toc-number">4.4.</span> <span class="toc-text">4. Realm组件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-GlobalNamingResources组件"><span class="toc-number">4.5.</span> <span class="toc-text">5. GlobalNamingResources组件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、Tomcat处理Http请求的过程"><span class="toc-number">5.</span> <span class="toc-text">四、Tomcat处理Http请求的过程</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-26296890-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
