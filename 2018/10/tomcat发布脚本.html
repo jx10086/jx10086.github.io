@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SRE 随笔 - Jixiang's Blog</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
+    <meta name="description" content="一个SRE攻城狮的随手笔记、乱七八糟的，凑合看吧。,"> 
+    <meta name="author" content="Ji Xiang"> 
+    <link rel="alternative" href="atom.xml" title="SRE 随笔" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">tomcat发布脚本</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">tomcat发布脚本</h1>
+        <div class="stuff">
+            <span>十月 22, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/shell/">shell</a></li><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/tomcat/">tomcat</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="tomcat发布脚本"><a href="#tomcat发布脚本" class="headerlink" title="tomcat发布脚本"></a>tomcat发布脚本</h1><p>##tomcat环境发布web脚本<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line">a=<span class="string">''</span></span><br><span class="line"><span class="comment"># check arguments</span></span><br><span class="line"><span class="keyword">if</span> [ x<span class="variable">$1</span> != x ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    a=<span class="variable">$1</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'warn....请选择您要部署的项目'</span></span><br><span class="line">    <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">rm -rf ./<span class="variable">$a</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'-----------------:'</span><span class="variable">$a</span></span><br><span class="line">mkdir <span class="variable">$a</span></span><br><span class="line">cp <span class="variable">$a</span>.war ./<span class="variable">$a</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$a</span></span><br><span class="line">jar xvf *.war</span><br><span class="line">rm -rf *.war</span><br><span class="line">rm -rf ./WEB-INF/lib/pzj*.jar</span><br><span class="line">rm -rf ./WEB-INF/classes/platform.properties</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">cp /home/chengdu/initWartravel_pc/files/*.jar ./WEB-INF/lib/</span><br><span class="line">cp /home/chengdu/initWartravel_pc/files/platform.properties ./WEB-INF/classes/</span><br><span class="line"></span><br><span class="line">jar cvf <span class="variable">$a</span>.war ./* </span><br><span class="line"></span><br><span class="line"><span class="comment">###############</span></span><br><span class="line">ps -ef | grep tomcat | grep <span class="variable">$a</span> | awk <span class="string">'&#123;print $2&#125;'</span> | sed -e <span class="string">"s/^/kill -9 /g"</span> | sh -</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line">rm -rf /home/chengdu/webapps/travel_pc/<span class="variable">$a</span></span><br><span class="line">rm -rf /home/chengdu/webapps/travel_pc/<span class="variable">$a</span>.war</span><br><span class="line">rm -rf /home/chengdu/tomcat/travel_pc/work/Catalina/localhost/<span class="variable">$a</span></span><br><span class="line">cp <span class="variable">$a</span>.war /home/chengdu/webapps/<span class="variable">$a</span></span><br><span class="line">/home/chengdu/tomcat/travel_pc/bin/startup.sh</span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">'\n\n'</span></span><br><span class="line">b=`ps -ef | grep tomcat | grep <span class="variable">$a</span>`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">'\n\n'</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$b</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">'\n\n'</span></span><br><span class="line"><span class="comment">#### str is empty</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$b</span>"</span>x != <span class="string">""</span>x ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">'startup success........'</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">'start failed..........请手动操作'</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">'\n\n'</span></span><br><span class="line"><span class="comment">### see log</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">read</span> -p <span class="string">"please input (y or n) 查看日志(y)..."</span> -t 15 char</span><br><span class="line"><span class="comment"># str eq</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$char</span>"</span>x = <span class="string">"y"</span>x ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    tail -f /home/chengdu/tomcat/travel_pc/logs/catalina.out</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">        <span class="built_in">exit</span> 0</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='http://link.hhtjim.com/163/5146554.mp3'></li>
+                    
+                        <li title='1' data-url='http://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#tomcat发布脚本"><span class="toc-number">1.</span> <span class="toc-text">tomcat发布脚本</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</html>
