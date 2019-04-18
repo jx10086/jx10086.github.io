@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://www.ytniu.com/about/index.html</loc>
+    
+    <lastmod>2019-04-18T04:08:42.943Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://www.ytniu.com/archives/index.html</loc>
     
     <lastmod>2019-04-18T02:54:16.373Z</lastmod>
@@ -271,13 +278,6 @@
     <loc>https://www.ytniu.com/Docker/index.html</loc>
     
     <lastmod>2018-10-22T02:05:34.048Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://www.ytniu.com/about/index.html</loc>
-    
-    <lastmod>2018-10-19T07:44:09.355Z</lastmod>
     
   </url>
   
