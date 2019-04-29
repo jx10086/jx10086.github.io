@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://www.ytniu.com/2019/04/kubenetes-%E7%BB%84%E7%BB%87%E5%9B%BE.html</loc>
+    <lastmod>2019-04-29T06:35:43.564Z</lastmod>
+  </url>  <url>
     <loc>https://www.ytniu.com/2018/10/tomcat%E5%8F%91%E5%B8%83%E8%84%9A%E6%9C%AC.html</loc>
     <lastmod>2019-04-18T02:22:13.207Z</lastmod>
   </url>  <url>
     <loc>https://www.ytniu.com/2018/10/Hyperledger-Fabric-v1-1-0-Demo.html</loc>
-    <lastmod>2019-04-18T01:38:14.972Z</lastmod>
+    <lastmod>2019-04-18T01:38:14.000Z</lastmod>
   </url>  <url>
     <loc>https://www.ytniu.com/2018/10/Tomcat%E4%B9%8B%E5%9B%BE%E6%96%87%E8%A7%A3%E6%9E%90Server-xml%E9%85%8D%E7%BD%AE.html</loc>
     <lastmod>2019-04-18T01:37:55.821Z</lastmod>
@@ -68,6 +71,6 @@
     <lastmod>2018-10-24T03:29:07.871Z</lastmod>
   </url>  <url>
     <loc>https://www.ytniu.com/2018/10/hello-world.html</loc>
-    <lastmod>2018-10-19T02:39:36.168Z</lastmod>
+    <lastmod>2018-10-19T02:39:36.000Z</lastmod>
   </url>
 </urlset>
