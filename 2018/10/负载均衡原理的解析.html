@@ -1,15 +1,15 @@
 
 <!DOCTYPE html>
-<html lang="" class="loading">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SRE日志 - DevOps_SRE_自动化运维</title>
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
+    <meta name="google" content="notranslate">
     <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
     <meta name="description" content="世界上的一切都是唯一的,"> 
     <meta name="author" content="Root"> 
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <link rel="stylesheet" href="/css/diaspora.css">
 </head>
-
+</html>
 <body class="loading">
     <div id="loader"></div>
     <div id="single">
@@ -63,7 +63,7 @@
 <p>我们需要权衡转移请求的开销和处理实际请求的开销，前者相对于后者越小，那么重定向的意义就越大，例如下载。你可以去很多镜像下载网站试下，会发现基本下载都使用了Location做了重定向。</p>
 <h1 id="二、DNS负载均衡"><a href="#二、DNS负载均衡" class="headerlink" title="二、DNS负载均衡"></a>二、DNS负载均衡</h1><p>DNS负责提供域名解析服务，当访问某个站点时，实际上首先需要通过该站点域名的DNS服务器来获取域名指向的IP地址，在这一过程中，DNS服务器完成了域名到IP地址的映射，同样，这样映射也可以是一对多的，这时候，DNS服务器便充当了负载均衡调度器，它就像http重定向转换策略一样，将用户的请求分散到多台服务器上，但是它的实现机制完全不同。</p>
 <p>使用dig命令来看下”baidu”的DNS设置</p>
-<p><img src="https://static.oschina.net/uploads/space/2017/0411/205913_PgDS_3341316.jpg" alt=""></p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0411/205913_PgDS_3341316.jpg" alt></p>
 <p>可见baidu拥有三个A记录</p>
 <p>相比http重定向，基于DNS的负载均衡完全节省了所谓的主站点，或者说DNS服务器已经充当了主站点的职能。但不同的是，作为调度器，DNS服务器本身的性能几乎不用担心。因为DNS记录可以被用户浏览器或者互联网接入服务商的各级DNS服务器缓存，只有当缓存过期后才会重新向域名的DNS服务器请求解析。也说是DNS不存在http的吞吐率限制，理论上可以无限增加实际服务器的数量。</p>
 <p>特性:</p>
@@ -89,7 +89,7 @@
 <p>NAT服务器:它工作在传输层，它可以修改发送来的IP数据包，将数据包的目标地址修改为实际服务器地址。</p>
 <p>从Linux2.4内核开始，其内置的Neftilter模块在内核中维护着一些数据包过滤表，这些表包含了用于控制数据包过滤的规则。可喜的是，<a href="http://lib.csdn.net/base/linux" target="_blank" rel="noopener">Linux</a>提供了iptables来对过滤表进行插入、修改和删除等操作。更加令人振奋的是，Linux2.6.x内核中内置了IPVS模块，它的工作性质类型于Netfilter模块，不过它更专注于实现IP负载均衡。</p>
 <p>想知道你的服务器内核是否已经安装了IPVS模块，可以</p>
-<p><img src="https://static.oschina.net/uploads/space/2017/0411/211529_WLOE_3341316.jpg" alt=""></p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0411/211529_WLOE_3341316.jpg" alt></p>
 <p>有输出意味着IPVS已经安装了。IPVS的管理工具是ipvsadm，它为提供了基于命令行的配置界面，可以通过它快速实现负载均衡系统。这就是大名鼎鼎的LVS(Linux Virtual Server，Linux虚拟服务器)。</p>
 <p>1、打开调度器的数据包转发选项</p>
 <p>echo 1 &gt; /proc/sys/net/ipv4/ip_forward</p>
@@ -110,7 +110,7 @@
 <p>这里假设一台负载均衡调度器，两台实际服务器，购买三个外网ip，一台机一个，三台机的默认网关需要相同，最后再设置同样的ip别名，这里假设别名为10.10.120.193。这样一来，将通过10.10.120.193这个IP别名来访问调度器，你可以将站点的域名指向这个IP别名。</p>
 <p>2、将ip别名添加到回环接口lo上</p>
 <p>这是为了让实际服务器不要去寻找其他拥有这个IP别名的服务器，在实际服务器中运行：</p>
-<p><img src="https://static.oschina.net/uploads/space/2017/0411/211643_3QOL_3341316.jpg" alt=""></p>
+<p><img src="https://static.oschina.net/uploads/space/2017/0411/211643_3QOL_3341316.jpg" alt></p>
 <p>另外还要防止实际服务器响应来自网络中针对IP别名的ARP广播，为此还要执行：</p>
 <p>echo “1” &gt; /proc/sys/net/ipv4/conf/lo/arp_ignore</p>
 <p>echo “2” &gt; /proc/sys/net/ipv4/conf/lo/arp_announce</p>

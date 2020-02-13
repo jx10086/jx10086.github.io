@@ -1,15 +1,15 @@
 
 <!DOCTYPE html>
-<html lang="" class="loading">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SRE日志 - DevOps_SRE_自动化运维</title>
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
+    <meta name="google" content="notranslate">
     <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
     <meta name="description" content="世界上的一切都是唯一的,"> 
     <meta name="author" content="Root"> 
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <link rel="stylesheet" href="/css/diaspora.css">
 </head>
-
+</html>
 <body class="loading">
     <div id="loader"></div>
     <div id="single">
@@ -53,7 +53,7 @@
         </div>
         <div class="content markdown">
             <h1 id="从零开始搭建创业公司后台技术栈"><a href="#从零开始搭建创业公司后台技术栈" class="headerlink" title="从零开始搭建创业公司后台技术栈"></a>从零开始搭建创业公司后台技术栈</h1><p>说到后台技术栈，脑海中是不是浮现的是这样一幅图？</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack1.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack1.png" alt></p>
 <p>有点眼晕，以上只是我们会用到的一些语言的合集，而且只是语言层面的一部分，就整个后台技术栈来说，这只是一个开始，从语言开始，还有很多很多的内容。今天要说的后台是大后台的概念，放在服务器上的东西都属于后台的东西，比如使用的框架，语言，数据库，服务，操作系统等等，整个后台技术栈我的理解包括4个层面的内容：</p>
 <ul>
 <li>语言： 用了哪些开发语言，如：c++/java/go/php/python/ruby等等；</li>
@@ -62,7 +62,7 @@
 <li>系统：系统化建设，上面的流程需要有系统来保证，如：规范发布流程的发布系统，代码管理系统等等；</li>
 </ul>
 <p>结合以上的的4个层面的内容，整个后台技术栈的结构如图2所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack2.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack2.png" alt></p>
 <p>[图2 后台技术栈结构]</p>
 <p>以上的这些内容都需要我们从零开始搭建，在创业公司，没有大公司那些完善的基础设施，需要我们从开源界，从云服务商甚至有些需要自己去组合，去拼装，去开发一个适合自己的组件或系统以达成我们的目标。咱们一个个系统和组件的做选型，最终形成我们的后台技术栈。</p>
 <h2 id="一、各系统组件选型"><a href="#一、各系统组件选型" class="headerlink" title="一、各系统组件选型"></a>一、各系统组件选型</h2><h3 id="1、项目管理-Bug管理-问题管理"><a href="#1、项目管理-Bug管理-问题管理" class="headerlink" title="1、项目管理/Bug管理/问题管理"></a>1、项目管理/Bug管理/问题管理</h3><p>项目管理软件是整个业务的需求，问题，流程等等的集中地，大家的跨部门沟通协同大多依赖于项目管理工具。有一些 SAAS 的项目管理服务可以使用，但是很多时间不满足需求，此时我们可以选择一些开源的项目，这些项目本身有一定的定制能力，有丰富的插件可以使用，一般的创业公司需求基本上都能得到满足，常用的项目如下：</p>
@@ -159,7 +159,7 @@
 </li>
 </ul>
 <p>业界消息中间件是一个非常通用的东西，大家在做选型时有使用开源的，也有自己造轮子的，甚至有直接用 MySQL 或 Redis 做队列的，关键看是否满足你的需求，如果是使用开源的项目，以下的表格在选型时可以参考：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack3.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack3.png" alt></p>
 <p>[图3]</p>
 <p>以上图的纬度为：名字 成熟度所属社区/公司 文档 授权方式 开发语言支持的协议 客户端支持的语言 性能 持久化 事务 集群 负载均衡 管理界面 部署方式 评价</p>
 <h3 id="10-、代-码管理"><a href="#10-、代-码管理" class="headerlink" title="10 、代 码管理"></a>10 、代 码管理</h3><p>代码是互联网创业公司的命脉之一，代码管理很重要，常见的考量点包括两块：</p>
@@ -195,10 +195,10 @@
 </ul>
 <p>Filebeat 已经完全替代了 Logstash-Forwarder 成为新一代的日志采集器，同时鉴于它轻量、安全等特点，越来越多人开始使用它。</p>
 <p>因为免费的 ELK 没有任何安全机制，所以这里使用了 Nginx 作反向代理，避免用户直接访问 Kibana 服务器。加上配置 Nginx 实现简单的用户认证，一定程度上提高安全性。另外，Nginx 本身具有负载均衡的作用，能够提高系统访问性能。ELK 架构如图4所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack4_elk.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack4_elk.png" alt></p>
 <p>[图4] ELK 流程图</p>
 <p>对于有实时计算的需求，可以使用 Flume+Kafka+Storm+MySQL方案，一 般架构如图5所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack5_flume.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack5_flume.png" alt></p>
 <p>[图5] 实时分析系统架构图</p>
 <p>其中：</p>
 <ul>
@@ -207,11 +207,11 @@
 </ul>
 <p>Kafka 追求的是高吞吐量、高负载，Flume 追求的是数据的多样性，二者结合起来简直完美。</p>
 <h3 id="13、监控系统"><a href="#13、监控系统" class="headerlink" title="13、监控系统"></a>13、监控系统</h3><p>监控系统只包含与后台相关的，这里主要是两块，一个是操作系统层的监控，比如机器负载，IO，网络流量，CPU，内存等操作系统指标的监控。另一个是服务质量和业务质量的监控，比如服务的可用性，成功率，失败率，容量，QPS 等等。常见业务的监控系统先有操作系统层面的监控（这部分较成熟），然后扩展出其它监控，如 zabbix，小米的 open-falcon，也有一出来就是两者都支持的，如 prometheu s。如果对业务监控要求比较高一些，在创业选型中建议可以优先考虑 prometheus。这里有一个有趣的分布，如图6所示</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack6_monitort.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack6_monitort.png" alt></p>
 <p>[图6 监控系统分布]</p>
 <p>亚洲区域使用 zabbix 较多，而美洲和欧洲，以及澳大利亚使用 prometheus 居多，换句话说，英文国家地区（发达国家？）使用prometheus 较多。</p>
 <p>Prometheus 是由 SoundCloud 开发的开源监控报警系统和时序列数据库( TSDB )。Prometheus 使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。相对于其它监控系统使用的 push 数据的方式，prometheus 使用的是 pull 的方式，其架构如图7所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack7_prometheus.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack7_prometheus.png" alt></p>
 <p>[图7] prometheus架构图</p>
 <p>如上图所示，prometheus 包含的主要组件如下：</p>
 <ul>
@@ -240,7 +240,7 @@
 </ul>
 <p>创业公司前期不需要这种复杂，直接上 zk，弄一个界面管理 zk 的内容，记录一下所有人的操作日志，程序直连 zk，或者或者用Qconf 等基于 zk 优化后的方案。</p>
 <h3 id="15、发布系统-部署系统"><a href="#15、发布系统-部署系统" class="headerlink" title="15、发布系统/部署系统"></a>15、发布系统/部署系统</h3><p>从软件生产的层面看，代码到最终服务的典型流程如图8所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack8_deploy.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack8_deploy.png" alt></p>
 <p>[图8 流程图]</p>
 <p>从上图中可以看出，从开发人员写下代码到服务最终用户是一个漫长过程，整体可以分成三个阶段：</p>
 <ul>
@@ -258,7 +258,7 @@
 <li>速度的选择(ansiblevssaltstack) ansible基于SSH协议传输数据，Saltstack使用消息队列zeroMQ传输数据；大规模并发的能力对于几十台-200台规模的兄弟来讲，ansible的性能也可接受，如果一次操作上千台，用salt好一些。</li>
 </ol>
 <p>如图9所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_statck9_mach.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_statck9_mach.png" alt></p>
 <p>[图9 机器管理软件对比]</p>
 <p>一般创业公司选择 Ansible 能解决大部问题，其简单，不需要安装额外的客户端，可以从命令行来运行，不需要使用配置文件。至于比较复杂的任务，Ansible 配置通过名为 Playbook 的配置文件中的 YAML 语法来加以处理。Playbook 还可以使用模板来扩展其功能。</p>
 <h2 id="二、创业公司的选择"><a href="#二、创业公司的选择" class="headerlink" title="二、创业公司的选择"></a>二、创业公司的选择</h2><h3 id="1、选择合适的语言"><a href="#1、选择合适的语言" class="headerlink" title="1、选择合适的语言"></a>1、选择合适的语言</h3><ul>
@@ -295,7 +295,7 @@
 <p>向未来看一眼，在一年到三年内，我们需要做出改变吗？技术栈要做根本性的改变吗？如果组织发展很快，在 200 人，500 人时，现有的技术栈是否需要大动？</p>
 <p>创业过程中需要考虑成本，这里的成本不仅仅是花费多少钱，付出多少工资，有时更重要的是时间成本，很多业务在创业时大家拼的就是时间，就是一个时间窗，过了就没你什么事儿了。</p>
 <h2 id="三、基于云的创业公司后台技术架构"><a href="#三、基于云的创业公司后台技术架构" class="headerlink" title="三、基于云的创业公司后台技术架构"></a>三、基于云的创业公司后台技术架构</h2><p>结合上面内容的考量，在对一个个系统和组件的做选型之后，以云服务为基础，一个创业公司的后台技术架构如图10所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack10_arch.png" alt=""></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack10_arch.png" alt></p>
 <p>[图10 后台技术架构]</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://database.51cto.com/art/201109/291781.htm" target="_blank" rel="noopener">http://database.51cto.com/art/201109/291781.htm</a></p>
 <p><a href="https://zh.wikipedia.org/wiki/Kafka" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Kafka</a></p>

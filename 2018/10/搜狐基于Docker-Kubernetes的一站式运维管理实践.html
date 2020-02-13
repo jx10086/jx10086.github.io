@@ -1,15 +1,15 @@
 
 <!DOCTYPE html>
-<html lang="" class="loading">
-<head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SRE日志 - DevOps_SRE_自动化运维</title>
 
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
+    <meta name="google" content="notranslate">
     <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
     <meta name="description" content="世界上的一切都是唯一的,"> 
     <meta name="author" content="Root"> 
@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <link rel="stylesheet" href="/css/diaspora.css">
 </head>
-
+</html>
 <body class="loading">
     <div id="loader"></div>
     <div id="single">
@@ -58,11 +58,11 @@
 <p>2015年下半年，搜狐北京研发中心基于Docker和Kubernetes开发了一套企业级的一站式运维管理系统——DomeOS。该系统是一个持续交付和自动运维平台，解决用户从代码自动编译打包，到线上运行维护的全套需求，采用私有云模式，实现了用户私有集群的容器化管理和资源智能分配。</p>
 <blockquote>
 <h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1></blockquote>
-<p><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/22998617.jpg" alt=""><br>DomeOS Server是整个系统的控制模块，前端和所有逻辑控制均在这部分实现。<br>MySQL用来存储项目、部署、用户、监控等数据信息。<br>Server可以关联到代码仓库，目前支持GitLab和SVN。<br>Registry是Docker提供的开源私有仓库，我们对它进行了改造，可以对接到搜狐云台的存储系统，保证了镜像的安全性和可靠性。<br>资源分配、任务调度部分交给Kubernetes来完成。<br>监控部分融合了open-falcon和cAdvisor，实现了主机和容器多个维度信息的收集展示。<br>另外，为了方便研发及运维同学在部署过程中快速定位问题，加入了WebSSH模块，能够通过网页直接进入到容器内部查看信息。DomeOS支持LDAP登录，方便企业用户使用。</p>
+<p><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/22998617.jpg" alt><br>DomeOS Server是整个系统的控制模块，前端和所有逻辑控制均在这部分实现。<br>MySQL用来存储项目、部署、用户、监控等数据信息。<br>Server可以关联到代码仓库，目前支持GitLab和SVN。<br>Registry是Docker提供的开源私有仓库，我们对它进行了改造，可以对接到搜狐云台的存储系统，保证了镜像的安全性和可靠性。<br>资源分配、任务调度部分交给Kubernetes来完成。<br>监控部分融合了open-falcon和cAdvisor，实现了主机和容器多个维度信息的收集展示。<br>另外，为了方便研发及运维同学在部署过程中快速定位问题，加入了WebSSH模块，能够通过网页直接进入到容器内部查看信息。DomeOS支持LDAP登录，方便企业用户使用。</p>
 <blockquote>
 <h1 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h1></blockquote>
-<p>DomeOS提供了项目管理、持续集成、部署管理、镜像管理、集群管理、应用商店、用户和组管理以及多层级监控服务。以下是功能模块图：<br><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/16054155.jpg" alt=""><br>其中项目管理、集群管理和部署是比较重要的功能。</p>
-<p>项目管理中包含了持续集成，设计方案如下：<br><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/34605215.jpg" alt=""><br>用户在代码仓库的操作，通过Webhooks将操作信息发送给DomeOS Server，Server根据项目关联配置信息确认是否满足构建任务的出发条件，如果满足，Domeos Server下发构建任务给Kubernetes Master，master挑选符合条件的slave启动构建镜像，该镜像从代码仓库中下载代码，根据对应的Dockerfile执行构建，构建生成的镜像被push到代码仓库中，然后反馈构建日志及结果给DomeOS Server，Server在仓库中确认过镜像信息后，将构建结果写入到数据库中。<br>集群管理部分，我们将一套Kubernetes部署作为一套集群，添加集群是配置Kubernetes Master信息的过程，用户可以在DomeOS中添加多套集群。</p>
+<p>DomeOS提供了项目管理、持续集成、部署管理、镜像管理、集群管理、应用商店、用户和组管理以及多层级监控服务。以下是功能模块图：<br><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/16054155.jpg" alt><br>其中项目管理、集群管理和部署是比较重要的功能。</p>
+<p>项目管理中包含了持续集成，设计方案如下：<br><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/34605215.jpg" alt><br>用户在代码仓库的操作，通过Webhooks将操作信息发送给DomeOS Server，Server根据项目关联配置信息确认是否满足构建任务的出发条件，如果满足，Domeos Server下发构建任务给Kubernetes Master，master挑选符合条件的slave启动构建镜像，该镜像从代码仓库中下载代码，根据对应的Dockerfile执行构建，构建生成的镜像被push到代码仓库中，然后反馈构建日志及结果给DomeOS Server，Server在仓库中确认过镜像信息后，将构建结果写入到数据库中。<br>集群管理部分，我们将一套Kubernetes部署作为一套集群，添加集群是配置Kubernetes Master信息的过程，用户可以在DomeOS中添加多套集群。</p>
 <p>当master信息配置完成后，我们提供了添加Node的脚本。对于一套集群，网络部分采用Flannel进行管理，每个Node上启动Agent上报监控信息并用于WebSSH登录。用户可以通过为主机添加Namespace和label进行资源和环境的隔离。</p>
 <blockquote>
 <h1 id="部署管理部分"><a href="#部署管理部分" class="headerlink" title="部署管理部分"></a>部署管理部分</h1></blockquote>
