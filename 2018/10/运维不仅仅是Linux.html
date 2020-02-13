@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SRE日志 - DevOps_SRE_自动化运维</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
+    <meta name="description" content="世界上的一切都是唯一的,"> 
+    <meta name="author" content="Root"> 
+    <link rel="alternative" href="atom.xml" title="SRE日志" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">运维不仅仅是Linux</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">运维不仅仅是Linux</h1>
+        <div class="stuff">
+            <span>十月 22, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/写作/">写作</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="运维不仅仅是Linux"><a href="#运维不仅仅是Linux" class="headerlink" title="运维不仅仅是Linux"></a>运维不仅仅是Linux</h1><p>运维不仅仅是懂Linux就行，因为还有一大部分的Windows运维，最近看一个报道说，windows的服务器占了47.71%。嗯，向windows运维人员致敬。当然我们这篇文章不是说运维除了懂Linux，还要懂Windows，而是涉及运维的其他方方面面。</p>
+<h3 id="环境部署"><a href="#环境部署" class="headerlink" title="环境部署"></a>环境部署</h3><p>一开始这个世界是开发的，然后才是运维的。<br>开发实现产品逻辑，将产品开发完成后，然后提交运维进行部署。此时允许就需要准备好部署环境，如部署在Linux服务器上，安装相应的软件，如Apache、Nginx、tomcat、JDK、PHP、MySQL等等。你不能只装了软件吧，还需要看看具体是哪个版本，java 7 和java 8 的差别还是有点的，php5和php7也有些语法不兼容。把软件都安装好了，就可以上线了？还是不行。还需要测试吧，那就还需要部署一套测试环境。有些时候，开发环境也是需要运维来部署的。</p>
+<h3 id="排错和调优"><a href="#排错和调优" class="headerlink" title="排错和调优"></a>排错和调优</h3><p>事情从来都没有一帆风顺的。<br>上线没多久，服务就502了，还不被老板骂死。尽管你有一肚子的委屈，我只是个运维，代码不是我写的，为什么要我来背这锅？！委屈归委屈，服务访问不了了，就是运维的事。尽快定位问题，解决问题才是王道。怎么来定位问题呢？最简单直接的办法就是看日志，看系统日志，看软件相关的日志，结合故障现象和经验，快速的进行定位和恢复。然后就是总结经验，吸取教训，写事故报告。OK，现在你知道，需要对系统环境需要进行一定的调优操作，不再做背锅侠。<br>相关技术: <code>top, vmstat, iftop, awk, sed, sar, iostat, strace, ...</code></p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>做最好的计划，做最坏的打算。<br>前不久的gitlab删库事件的教训犹在眼前，丢失了几小时的数据，虽然大部分的备份策略都失效了，但还是挽救了几小时前的一个备份，才没有造成更大的数据丢失和公司损失。我们需要对设备进行备份冗余，需要对数据库进行备份及离线备份，需要对网站静态进行备份冗余，需要对机房进行备用，能做到双活，那是更好的啦。<br>相关技术: <code>rsync, crontab, lvm快照, mysqldump, extrabackup, 完全备份, 差异备份, 增量备份, 离线异地备份, ...</code></p>
+<h3 id="高可用和集群"><a href="#高可用和集群" class="headerlink" title="高可用和集群"></a>高可用和集群</h3><p>没有永垂不朽，我们不能保证硬件24小时在线，但需要保障服务24小时在线。<br>出现故障后，如果做好高可用和冗余，故障自动切换，移除故障节点，那样也就保障了服务的实时在线。在老板和用户不知情的情况下，悄么的把故障处理好的，KPI算是保住了，奖金也许就会有的吧。<br>相关技术: <code>F5, Nginx, LVS, HA-proxy, MHA, Zookeeper, 各种其他分布式集群方案, ...</code></p>
+<h3 id="监控告警"><a href="#监控告警" class="headerlink" title="监控告警"></a>监控告警</h3><p>运维工程师的第一次解放运动。<br>时刻担心网站挂掉，一年365天、每周7天、每天24小时，时刻保持精神高度紧张，就算你是神仙都会撑不住的。我们需要一个机器来监督其他的机器工作，我们需要解放我们自己。当有故障发生的时候，通过短信、微信、钉钉、邮件等等通知对应的运维工程师来处理，甚至是自动切换或摘除故障节点，然后我们离线对故障节点进行问题排查。<br>相关技术：<code>Zabbix, Nagios, Cacti, Prometheus, open-falcon, Ganglia, sar, ...</code></p>
+<h3 id="安全和审计"><a href="#安全和审计" class="headerlink" title="安全和审计"></a>安全和审计</h3><p>狂奔在互联网的康庄大道上，不过有些人是在裸奔。<br>不安全的网络环境和服务器配置，无异于在网络世界裸奔，任何人都可以窥探你的隐私。你的应用是否做了SQL防注入？你的防火墙是否开启？是否还在用root+密码的方式登录服务器？网站开启了https么？是否对系统操作进行审计？<br>相关技术: <code>iptables, firewalld, waf, auditd, 各服务的正确配置, ...</code></p>
+<h3 id="自动化和DevOps"><a href="#自动化和DevOps" class="headerlink" title="自动化和DevOps"></a>自动化和DevOps</h3><p>运维工程师的第二次解放运动。<br>偷懒是社会进步的第一动力。聪明的我们怎么会让自己一直在重复枯燥的事情上浪费时间，装系统、部署环境、发版本、批量操作，把这一切交给程序去实现吧，我们需要的是享受生活。<br>相关技术: <code>shell, python, go, rundeck, ansible, saltstack, puppet, chef, cobbler, fabric, ...</code></p>
+<h3 id="虚拟化和云服务"><a href="#虚拟化和云服务" class="headerlink" title="虚拟化和云服务"></a>虚拟化和云服务</h3><p>正在发生的一场运维革命。<br>这场革命的发起人是买书的亚马逊，这家伙希望卖一切可以卖的东西，包括自己闲置的服务器资源。现在国内的阿里云和腾讯云也发展得如日中天，他们几乎提供了运维所需要的一切，甚至可以让一个公司不再需要运维的岗位。你需要服务器，只需要几秒钟，就可以创建一台。你需要数据库集群，只需要鼠标点击几下，就可以开通。<br>相关技术：<code>docker, Moby, kubernetes, Xen, CoreOS, Hyper-V, KVM, ...</code></p>
+<p><a href="https://static.oschina.net/uploads/img/201704/25173114_cVvM.png" target="_blank" rel="noopener">点击大图</a></p>
+<p><img src="https://static.oschina.net/uploads/img/201704/25173114_cVvM.png" alt></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='https://link.hhtjim.com/qq/0022R1L82mb8Hp.mp3'></li>
+                    
+                        <li title='1' data-url='https://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#运维不仅仅是Linux"><span class="toc-number">1.</span> <span class="toc-text">运维不仅仅是Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#环境部署"><span class="toc-number">1.0.1.</span> <span class="toc-text">环境部署</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#排错和调优"><span class="toc-number">1.0.2.</span> <span class="toc-text">排错和调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#备份"><span class="toc-number">1.0.3.</span> <span class="toc-text">备份</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高可用和集群"><span class="toc-number">1.0.4.</span> <span class="toc-text">高可用和集群</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#监控告警"><span class="toc-number">1.0.5.</span> <span class="toc-text">监控告警</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全和审计"><span class="toc-number">1.0.6.</span> <span class="toc-text">安全和审计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自动化和DevOps"><span class="toc-number">1.0.7.</span> <span class="toc-text">自动化和DevOps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟化和云服务"><span class="toc-number">1.0.8.</span> <span class="toc-text">虚拟化和云服务</span></a></li></ol></li></ol></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-26296890-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>

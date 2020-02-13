@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SRE日志 - DevOps_SRE_自动化运维</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
+    <meta name="description" content="世界上的一切都是唯一的,"> 
+    <meta name="author" content="Root"> 
+    <link rel="alternative" href="atom.xml" title="SRE日志" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">运维经典面试题</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">运维经典面试题</h1>
+        <div class="stuff">
+            <span>十月 22, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/面试/">面试</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="运维经典面试题"><a href="#运维经典面试题" class="headerlink" title="运维经典面试题"></a>运维经典面试题</h1><h1 id="1、docker命令"><a href="#1、docker命令" class="headerlink" title="1、docker命令"></a>1、docker命令</h1><p>容器生命周期管理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker [run|start|stop|restart|kill|rm|pause|unpause]</span><br></pre></td></tr></table></figure></p>
+<p>容器操作运维<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker [ps|inspect|top|attach|events|logs|wait|export|port]</span><br></pre></td></tr></table></figure></p>
+<p>容器rootfs命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker [commit|cp|diff]</span><br></pre></td></tr></table></figure></p>
+<p>镜像仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker [login|pull|push|search]</span><br></pre></td></tr></table></figure></p>
+<p>本地镜像管理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker [images|rmi|tag|build|history|save|import]</span><br></pre></td></tr></table></figure></p>
+<p>其他命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker [info|version]</span><br></pre></td></tr></table></figure></p>
+<h1 id="2、docker怎样实现容器件的独立"><a href="#2、docker怎样实现容器件的独立" class="headerlink" title="2、docker怎样实现容器件的独立"></a>2、docker怎样实现容器件的独立</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">1)pid namespace</span><br><span class="line"></span><br><span class="line">不同用户的进程就是通过pid namespace 隔离开的，且不同  namespace  中可以有相同pid。所有的LXC进程在docker中的父进程为docker进程，每个lxc进程具有不同的 namespace 。</span><br><span class="line"></span><br><span class="line">2) net namespace</span><br><span class="line"></span><br><span class="line">有了pid namespace,  每个 namespace 中的pid能够相互隔离，但是网络端口还是共享 host 的端口。网络隔离是通过 net namespace 实现的，每个 net namespace 有独立的  network devices, IP addresses, IP routing tables, /proc/net 目录。这样每个 container 的网络就能隔离开来。docker默认采用veth的方式将 container 中的虚拟网卡同 host 上的一个docker bridge: docker0 连接在一起。</span><br><span class="line"></span><br><span class="line">3) ipc namespace</span><br><span class="line"></span><br><span class="line">container 中进程交互还是采用linux常见的进程间交互方法 (interprocess communication - IPC),包括常见的信号量、消息队列和共享内存。container  的进程间交互实际上还是host 上具有相同pid namespace 中的进程间交互。</span><br><span class="line"></span><br><span class="line">4) mnt namespace</span><br><span class="line"></span><br><span class="line">类似chroot，将一个进程放到一个特定的目录执行。mnt namespace 允许不同 namespace 的进程看到的文件结构不同，这样每个  namespace  中的进程所看到的文件目录就被隔离开了。在container里头，看到的文件系统，就是一个完整的linux系统，有/etc、/lib等，通过chroot实现。`</span><br><span class="line"></span><br><span class="line">5) uts namespace</span><br><span class="line"></span><br><span class="line">UTS(&quot;UNIX Time-sharing System&quot;) namespace 允许每个 container 拥有独立的 hostname和 domain name,  使其在网络上可以被视作一个独立的节点而非 Host 上的一个进程。</span><br><span class="line"></span><br><span class="line">6) user namespace</span><br><span class="line"></span><br><span class="line">每个 container 可以有不同的  user  和  group id,  也就是说可以在 container 内部用 container 内部的用户执行程序而非 Host 上的用户。</span><br><span class="line"></span><br><span class="line">有了以上 6 种 namespace 从进程、网络、IPC、文件系统、UTS和用户角度的隔离，一个 container 就可以对外展现出一个独立计算机的能力，并且不同 container 从 OS 层面实现了隔离。然而不同 namespace 之间资源还是相互竞争的，仍然需要类似ulimit来管理每个 container 所能使用的资源 - -cgroup。</span><br><span class="line"></span><br><span class="line">cgroups（Control groups）实现了对资源的配额和度量。</span><br></pre></td></tr></table></figure>
+<h1 id="3、Linux如何挂载windows下的共享目录"><a href="#3、Linux如何挂载windows下的共享目录" class="headerlink" title="3、Linux如何挂载windows下的共享目录"></a>3、Linux如何挂载windows下的共享目录</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mount.cifs //IP地址/server/mnt/server -o user=administrator,password=123456</span><br><span class="line"></span><br><span class="line">linux 下的server需要自己手动建一个  后面的user与pass 是windows主机的账号和密码 注意空格 和逗号</span><br></pre></td></tr></table></figure>
+<h1 id="4、查看http的并发请求数与其TCP连接状态"><a href="#4、查看http的并发请求数与其TCP连接状态" class="headerlink" title="4、查看http的并发请求数与其TCP连接状态"></a>4、查看http的并发请求数与其TCP连接状态</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n | awk &apos;/^tcp/ &#123;++b[$NF]&#125;&apos; END &#123;for(a in b) print a,b[a]&#125;&apos;</span><br></pre></td></tr></table></figure>
+<p>还有<code>ulimit -n</code>查看linux系统打开最大的文件描述符，这里默认1024，不修改这里web服务器修改再大也没用。若要用就修改很几个办法，这里说其中一个：<br>修改/etc/security/limits.conf<br>soft nofile 10240<br>hard nofile 10240<br>重启后生效</p>
+<h1 id="5、用tcpdump嗅探80端口的访问看看谁最高。"><a href="#5、用tcpdump嗅探80端口的访问看看谁最高。" class="headerlink" title="5、用tcpdump嗅探80端口的访问看看谁最高。"></a>5、用tcpdump嗅探80端口的访问看看谁最高。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tcpdump -i eth0 -tnn dst port 80 -c 1000 | awk -F&quot;.&quot; &apos;&#123;print $1&quot;.&quot;$2&quot;.&quot;$3&quot;.&quot;$4&quot;.&quot;&#125;&apos; | sort |uniq -c | sort -nr | head-5&amp;nbsp;</span><br></pre></td></tr></table></figure>
+<h1 id="6、查看-var-log目录下的文件数"><a href="#6、查看-var-log目录下的文件数" class="headerlink" title="6、查看/var/log目录下的文件数"></a>6、查看/var/log目录下的文件数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls /var/log/ -1R | grep &quot;-&quot; | wc -l</span><br></pre></td></tr></table></figure>
+<h1 id="7、查看当前系统每个ip的连接数"><a href="#7、查看当前系统每个ip的连接数" class="headerlink" title="7、查看当前系统每个ip的连接数"></a>7、查看当前系统每个ip的连接数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netstat -n | awk &apos;/^tcp/ &#123;print $5&#125;&apos; | awk -F: &apos;&#123;print $1&#125;&apos; | sort | uniq -c | sort -rn</span><br></pre></td></tr></table></figure>
+<h1 id="8、shell下32位随机密码生成。"><a href="#8、shell下32位随机密码生成。" class="headerlink" title="8、shell下32位随机密码生成。"></a>8、shell下32位随机密码生成。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /dev/urandom | head -1 | md5sum | head -c 32 &gt;&gt; /pass</span><br></pre></td></tr></table></figure>
+<h1 id="9、统计出apache的access-log中访问量最多的5个ip。"><a href="#9、统计出apache的access-log中访问量最多的5个ip。" class="headerlink" title="9、统计出apache的access.log中访问量最多的5个ip。"></a>9、统计出apache的access.log中访问量最多的5个ip。</h1> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat access.log | awk &apos;&#123;print $1&#125;&apos; | sort | uniq -c | sort -n -r | head -5</span><br></pre></td></tr></table></figure>
+<h1 id="10、如何查看二进制文件的内容"><a href="#10、如何查看二进制文件的内容" class="headerlink" title="10、如何查看二进制文件的内容"></a>10、如何查看二进制文件的内容</h1><p>我们一般通过hexdump命令 来查看二进制文件的内容。</p>
+<p><code>hexdump -C XXX(文件名)</code>  -C是参数 不同的参数有不同的意义<br>-C  是比较规范的 十六进制和ASCII码显示<br>-c  是单字节字符显示<br>-b  单字节八进制显示<br>-o  是双字节八进制显示<br>-d  是双字节十进制显示<br>-x  是双字节十六进制显示<br>… …</p>
+<h1 id="11、ps-aux-中的VSZ代表什么意思，RSS代表什么意思"><a href="#11、ps-aux-中的VSZ代表什么意思，RSS代表什么意思" class="headerlink" title="11、ps aux 中的VSZ代表什么意思，RSS代表什么意思"></a>11、ps aux 中的VSZ代表什么意思，RSS代表什么意思</h1><p>VSZ:虚拟内存集,进程占用的虚拟内存空间</p>
+<p>RSS:物理内存集,进程战用实际物理内存空间</p>
+<h2 id="12、Linux-系统的开机启动顺序"><a href="#12、Linux-系统的开机启动顺序" class="headerlink" title="12、Linux  系统的开机启动顺序"></a>12、Linux  系统的开机启动顺序</h2><p>加载BIOS–&gt;读取MBR–&gt;Boot Loader–&gt;加载内核–&gt;用户层init一句inittab文件来设定系统运行的等级(一般3或者5，3是多用户命令行，5是界面)–&gt;init进程执行rc.syninit–&gt;启动内核模块–&gt;执行不同级别运行的脚本程序–&gt;执行  /etc/rc  .d  /rc  、local  (本地运行服务)–&gt;执行  /bin/login  ,就可以登录了。 </p>
+<h1 id="13、符号链接与硬链接的区别"><a href="#13、符号链接与硬链接的区别" class="headerlink" title="13、符号链接与硬链接的区别"></a>13、符号链接与硬链接的区别</h1><p>我们可以把符号链接，也就是软连接 当做是 windows系统里的 快捷方式。<br>硬链接 就好像是 又复制了一份.<br><code>ln   3.txt 4.txt</code>   这是硬链接，相当于复制，不可以跨分区，但修改3,4会跟着变，若删除3,4不受任何影响。 </p>
+<p><code>ln   -s 3.txt 4.txt</code>  这是软连接，相当于快捷方式。修改4,3也会跟着变，若删除3,4就坏掉了。不可以用了。 </p>
+<h1 id="14、保存当前磁盘分区的分区表"><a href="#14、保存当前磁盘分区的分区表" class="headerlink" title="14、保存当前磁盘分区的分区表"></a>14、保存当前磁盘分区的分区表</h1><p> <code>dd</code>   命令是以个强大的命令，在复制的同时进行转换 </p>
+<p> <code>dd   if  =  /dev/sda   of=、/mbr  .txt bs=1 count=512</code> </p>
+<h1 id="15-如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。"><a href="#15-如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。" class="headerlink" title="15.如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。"></a>15.如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。</h1><p>以下操作全部在命令行状态操作，不要在编辑状态操作。 </p>
+<p>在文本里 移动到想要复制的行  按<code>yy</code>  想复制到哪就移动到哪，然后按<code>P</code>  就黏贴了 </p>
+<p>删除行  移动到改行 按  <code>dd</code> </p>
+<p>删除全部  <code>dG</code>  这里注意<code>G</code>一定要大写 </p>
+<p>按行查找  <code>:90</code> 这样就是找到第90行 </p>
+<p>按字母查找   <code>/path</code>    这样就是 找到<code>path</code>这个单词所在的位置，文本里可能存在多个,多次查找会显示在不同的位置。 </p>
+<h1 id="16、手动安装grub"><a href="#16、手动安装grub" class="headerlink" title="16、手动安装grub"></a>16、手动安装grub</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grub-install /dev/sda</span><br></pre></td></tr></table></figure>
+<h1 id="17、修改内核参数"><a href="#17、修改内核参数" class="headerlink" title="17、修改内核参数"></a>17、修改内核参数</h1><p><code>vi   /etc/sysctl.conf</code>  这里修改参数 </p>
+<p><code>sysctl -p</code>  刷新后可用 </p>
+<h1 id="18、在1-39内取随机数"><a href="#18、在1-39内取随机数" class="headerlink" title="18、在1-39内取随机数"></a>18、在1-39内取随机数</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">expr $[RANDOM%39] +1</span><br><span class="line">RANDOM随机数</span><br><span class="line">%39取余数范围0-38</span><br></pre></td></tr></table></figure>
+<h1 id="19、限制apache每秒新建连接数为1，峰值为3"><a href="#19、限制apache每秒新建连接数为1，峰值为3" class="headerlink" title="19、限制apache每秒新建连接数为1，峰值为3"></a>19、限制apache每秒新建连接数为1，峰值为3</h1><p> 每秒新建连接数 一般都是由防火墙来做，apache本身好像无法设置每秒新建连接数，只能设置最大连接：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -A INPUT -d 172.16.100.1 -p tcp --dport 80 -m limit --limit  1/second -j ACCEPT</span><br></pre></td></tr></table></figure></p>
+<h1 id="20-FTP-的主动模式和被动模式"><a href="#20-FTP-的主动模式和被动模式" class="headerlink" title="20.FTP  的主动模式和被动模式"></a>20.FTP  的主动模式和被动模式</h1><p>FTP协议有两种工作方式：PORT方式和PASV方式，中文意思为主动式和被动式。 </p>
+<p>PORT（主动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，客户端在命令链路上用PORT 命令告诉服务器：“我打开了XX端口，你过来连接我”。于是服务器从20端口向客户端的 XX端口发送连接请求，建立一条数据链路来传送数据。 </p>
+<p>PASV（被动）方式的连接过程是：客户端向服务器的FTP端口（默认是21）发送连接请 求，服务器接受连接，建立一条命令链路。当需要传送数据时，服务器在命令链路上用PASV 命令告诉客户端：“我打开了XX端口，你过来连接我”。于是客户端向服务器的XX端口 发送连接请求，建立一条数据链路来传送数据。 </p>
+<p>从上面可以看出，两种方式的命令链路连接方法是一样的，而数据链路的建立方法就完 全不同。 </p>
+<h1 id="21、显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行。"><a href="#21、显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行。" class="headerlink" title="21、显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行。"></a>21、显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行。</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;^#\&#123;1,\&#125;[^]&quot; /etc/inittab</span><br></pre></td></tr></table></figure>
+<h1 id="22-显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行"><a href="#22-显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行" class="headerlink" title="22.显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行"></a>22.显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep &quot;\:[0-9]\&#123;1\&#125;:&quot; /etc/inittab</span><br></pre></td></tr></table></figure>
+<h1 id="23、怎么把脚本添加到系统服务里，即用service来调用"><a href="#23、怎么把脚本添加到系统服务里，即用service来调用" class="headerlink" title="23、怎么把脚本添加到系统服务里，即用service来调用"></a>23、怎么把脚本添加到系统服务里，即用service来调用</h1><p> 在脚本里加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"># chkconfig: 345 85 15</span><br><span class="line"># description: httpd</span><br></pre></td></tr></table></figure></p>
+<p>然后保存<br><code>chkconfig httpd –add</code>  创建系统服务<br>现在就可以使用<code>service</code> 来 <code>start or restart</code></p>
+<h1 id="24、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"><a href="#24、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符" class="headerlink" title="24、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"></a>24、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">#description: useradd</span><br><span class="line">for i in `seq -f&quot;%02g&quot; 1 20`;do</span><br><span class="line">useradd user$i</span><br><span class="line">echo &quot;user$i-`echo $RANDOM|md5sum|cut -c 1-5`&quot;|passwd –stdinuser$i &gt;/dev/null 2&gt;&amp;1</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<h1 id="25、写一个脚本，实现判断192-168-1-0-24网络里，当前在线的IP有哪些，能ping通则认为在线"><a href="#25、写一个脚本，实现判断192-168-1-0-24网络里，当前在线的IP有哪些，能ping通则认为在线" class="headerlink" title="25、写一个脚本，实现判断192.168.1.0/24网络里，当前在线的IP有哪些，能ping通则认为在线"></a>25、写一个脚本，实现判断192.168.1.0/24网络里，当前在线的IP有哪些，能ping通则认为在线</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">for ip in `seq 1 255`</span><br><span class="line">do</span><br><span class="line">ping -c 1 192.168.1.$ip &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">if [ $? -eq 0 ]; then</span><br><span class="line">echo 192.168.1.$ip UP</span><br><span class="line">else</span><br><span class="line">echo 192.168.1.$ip DOWN</span><br><span class="line">fi</span><br><span class="line">&#125;&amp;</span><br><span class="line">done</span><br><span class="line">wait</span><br></pre></td></tr></table></figure>
+<p> 26、写一个脚本，判断一个指定的脚本是否是语法错误；如果有错误，则提醒用户键入Q或者q无视错误并退出其它任何键可以通过vim打开这个指定的脚本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost  tmp]# cat checksh.sh</span><br><span class="line"> #!/bin/bash</span><br><span class="line"> read -p &quot;please input check script-&gt; &quot; file</span><br><span class="line"> if [ -f $file ]; then</span><br><span class="line">    sh -n $file &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    if [ $? -ne 0 ]; then</span><br><span class="line">        read -p &quot;You input $file syntax error,[Type q to exit or Type vim to  edit]&quot; answer</span><br><span class="line">        case $answer in</span><br><span class="line">        q | Q)</span><br><span class="line">           exit 0</span><br><span class="line">           ;;</span><br><span class="line">        vim )</span><br><span class="line">           vim $file</span><br><span class="line">           ;;</span><br><span class="line">        *）</span><br><span class="line">         exit 0</span><br><span class="line">         ;;</span><br><span class="line">        esac</span><br><span class="line">   fi</span><br><span class="line"> else</span><br><span class="line">    echo &quot;$file not exist&quot;</span><br><span class="line">    exit 1</span><br><span class="line"> fi</span><br></pre></td></tr></table></figure></p>
+<h1 id="27、写一个脚本：-26-包括3个小题"><a href="#27、写一个脚本：-26-包括3个小题" class="headerlink" title="27、写一个脚本：(26  包括3个小题)"></a>27、写一个脚本：(26  包括3个小题)</h1><p>1、创建一个函数，能接受两个参数：</p>
+<p>1)第一个参数为URL，即可下载的文件；第二个参数为目录，即下载后保存的位置；</p>
+<p>2)如果用户给的目录不存在，则提示用户是否创建；如果创建就继续执行，否则，函数返回一个51的错误值给调用脚本；</p>
+<p>3)如果给的目录存在，则下载文件；下载命令执行结束后测试文件下载成功与否；如果成功，则返回0给调用脚本，否则，返回52给调用脚本；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost tmp]# cat downfile.sh</span><br><span class="line">#!/bin/bash</span><br><span class="line">url=$1</span><br><span class="line">dir=$2</span><br><span class="line">download()</span><br><span class="line">  &#123;</span><br><span class="line">    cd $dir &gt;&gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    if [ $? -ne 0 ];then</span><br><span class="line">        read -p &quot;$dir No such file or directory,create?(y/n)&quot; answer</span><br><span class="line">        if [ &quot;$answer&quot; == &quot;y&quot; ];then</span><br><span class="line">            mkdir -p $dir</span><br><span class="line">            cd $dir</span><br><span class="line">            wget $url 1&gt; /dev/null 2&gt;&amp;1</span><br><span class="line">        else</span><br><span class="line">            return &quot;51&quot;</span><br><span class="line">        fi</span><br><span class="line">    fi</span><br><span class="line">    if [ $? -ne 0 ]; then</span><br><span class="line">        return &quot;52&quot;</span><br><span class="line">    fi</span><br><span class="line">&#125;</span><br><span class="line">download $url $dir</span><br><span class="line">echo $?</span><br></pre></td></tr></table></figure>
+<h1 id="28、写一个脚本：（27-包括2个小题）"><a href="#28、写一个脚本：（27-包括2个小题）" class="headerlink" title="28、写一个脚本：（27  包括2个小题）"></a>28、写一个脚本：（27  包括2个小题）</h1><p>1、创建一个函数，可以接受一个磁盘设备路径（如/dev/sdb）作为参数;在真正开始后面步骤之前提醒用户有危险，并让用户选择是否继续；而后将此磁盘设备上的所有分区清空（提示，使用命令dd if=/dev/zero of=/dev/sdb bs=512 count=1实现，注意其中的设备路径不要写错了；</p>
+<p>如果此步骤失败，返回67给主程序；</p>
+<p>接着在此磁盘设备上创建两个主分区，一个大小为100M，一个大小为1G；如果此步骤失败，返回68给主程序；</p>
+<p>格式化此两分区，文件系统类型为ext3；如果此步骤失败，返回69给主程序；</p>
+<p>如果上述过程都正常，返回0给主程序；</p>
+<p>2、调用此函数；并通过接收函数执行的返回值来判断其执行情况，并将信息显示出来；</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">local Darray=(`ls /dev/sd[a-z]`)</span><br><span class="line">for i in $&#123;Darray&#125;;do</span><br><span class="line">  [[ &quot;$i&quot; == &quot;$1&quot; ]] &amp;&amp; Sd=$i &amp;&amp;break</span><br><span class="line">done</span><br><span class="line">  else</span><br><span class="line">  return66</span><br><span class="line">  fi</span><br></pre></td></tr></table></figure>
+<ul>
+<li>当匹配成功，进入选择，告诉用户，是否继续，输错的话进入无限循环，当用户选择Y,则清空目标分区，且跳出while循环</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">while :;do</span><br><span class="line">    read -p &quot;Warning!!!This operation will clean $Sd data.Next=y,Quit=n [y|n]:&quot; Choice</span><br><span class="line">    case $Choice in</span><br><span class="line">y)</span><br><span class="line">   dd if=/dev/zero of=$Sd bs=512 count=1 &amp;&gt; /dev/null &amp;&amp;break || return 67 ;;</span><br><span class="line">n)</span><br><span class="line">   exit 88 ;;</span><br><span class="line">*)</span><br><span class="line">   echo &quot;Invalid choice,please choice again.&quot; ;;</span><br><span class="line">esac</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+<ul>
+<li>使用echo传递给fdisk进行分区，如果此命令失败，则跳转出去，错误值68，需要注意的是，有时候这个返回值很诡异，笔者之前成功与否都是返回的1，后来重启之后，就好了，如果慎重的话，可以对创建的分区，进行判断，不过就需要使用其他工具截取相关字段了，虽有些小麻烦，但无大碍</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo-e &quot;n\np\n1\n\n+100M\nn\np\n2\n\n+1024M\nw\n&quot;|fdisk /dev/sdb&amp;&gt; /dev/null || || return 68</span><br></pre></td></tr></table></figure>
+<p>格式化之前，让内核重新读取磁盘分区表，值得注意的是，有的系统版本，使用partprobe无效，譬如笔者的环境是rhel5.8，而rhel6.0以后，这个命令就很危险了，而使用partx -a /dev/sdb则效果更好…此项需慎重，如果格式化失败，则告知把失败的分区定义成变量，且跳出函数，并带出错误值69<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">`partprobe`</span><br><span class="line">Part=`fdisk -l /dev/$Sd|tail -2|cut -d” ” -f1`</span><br><span class="line">for M in $&#123;Part&#125;;do</span><br><span class="line">   mke2fs -j $M &amp;&gt; /dev/null &amp;&amp; ErrorPart=$M &amp;&amp;return 69</span><br><span class="line">done</span><br><span class="line">  return 0</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>下面代码，调用函数，接收函数返回值，根据返回值进行判断哪里出错。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Disk_Mod $1</span><br><span class="line">Res=$?</span><br><span class="line">[ $Res-eq 0 ] &amp;&amp; exit 0</span><br><span class="line">[ $Res-eq 66 ] &amp;&amp; echo &quot;Error! Invalid input.&quot;</span><br><span class="line">[ $Res-eq 67 ] &amp;&amp; echo &quot;Error! Command -&gt; dd &lt;- Faild.&quot;</span><br><span class="line">[ $Res-eq 68 ] &amp;&amp; echo &quot;Error! Command -&gt; fdisk &lt;- Faild.&quot;</span><br><span class="line">[ $Res-eq 69 ] &amp;&amp; echo &quot;Error! Command -&gt; mke2fs &lt;- Faild.&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="28、如何让history命令显示具体时间？"><a href="#28、如何让history命令显示具体时间？" class="headerlink" title="28、如何让history命令显示具体时间？"></a>28、如何让history命令显示具体时间？</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HISTTIMEFORMAT=&quot;%Y-%m-%d %H:%M:%S&quot;</span><br><span class="line">export HISTTIMEFORMAT </span><br><span class="line">重新开机后会还原，可以写／etc／profile</span><br></pre></td></tr></table></figure>
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='https://link.hhtjim.com/qq/0022R1L82mb8Hp.mp3'></li>
+                    
+                        <li title='1' data-url='https://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#运维经典面试题"><span class="toc-number">1.</span> <span class="toc-text">运维经典面试题</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1、docker命令"><span class="toc-number">2.</span> <span class="toc-text">1、docker命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、docker怎样实现容器件的独立"><span class="toc-number">3.</span> <span class="toc-text">2、docker怎样实现容器件的独立</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、Linux如何挂载windows下的共享目录"><span class="toc-number">4.</span> <span class="toc-text">3、Linux如何挂载windows下的共享目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、查看http的并发请求数与其TCP连接状态"><span class="toc-number">5.</span> <span class="toc-text">4、查看http的并发请求数与其TCP连接状态</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5、用tcpdump嗅探80端口的访问看看谁最高。"><span class="toc-number">6.</span> <span class="toc-text">5、用tcpdump嗅探80端口的访问看看谁最高。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6、查看-var-log目录下的文件数"><span class="toc-number">7.</span> <span class="toc-text">6、查看/var/log目录下的文件数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7、查看当前系统每个ip的连接数"><span class="toc-number">8.</span> <span class="toc-text">7、查看当前系统每个ip的连接数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8、shell下32位随机密码生成。"><span class="toc-number">9.</span> <span class="toc-text">8、shell下32位随机密码生成。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9、统计出apache的access-log中访问量最多的5个ip。"><span class="toc-number">10.</span> <span class="toc-text">9、统计出apache的access.log中访问量最多的5个ip。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#10、如何查看二进制文件的内容"><span class="toc-number">11.</span> <span class="toc-text">10、如何查看二进制文件的内容</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#11、ps-aux-中的VSZ代表什么意思，RSS代表什么意思"><span class="toc-number">12.</span> <span class="toc-text">11、ps aux 中的VSZ代表什么意思，RSS代表什么意思</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#12、Linux-系统的开机启动顺序"><span class="toc-number">12.1.</span> <span class="toc-text">12、Linux  系统的开机启动顺序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#13、符号链接与硬链接的区别"><span class="toc-number">13.</span> <span class="toc-text">13、符号链接与硬链接的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#14、保存当前磁盘分区的分区表"><span class="toc-number">14.</span> <span class="toc-text">14、保存当前磁盘分区的分区表</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#15-如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。"><span class="toc-number">15.</span> <span class="toc-text">15.如何在文本里面进行复制、粘贴，删除行，删除全部，按行查找和按字母查找。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#16、手动安装grub"><span class="toc-number">16.</span> <span class="toc-text">16、手动安装grub</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#17、修改内核参数"><span class="toc-number">17.</span> <span class="toc-text">17、修改内核参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#18、在1-39内取随机数"><span class="toc-number">18.</span> <span class="toc-text">18、在1-39内取随机数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#19、限制apache每秒新建连接数为1，峰值为3"><span class="toc-number">19.</span> <span class="toc-text">19、限制apache每秒新建连接数为1，峰值为3</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#20-FTP-的主动模式和被动模式"><span class="toc-number">20.</span> <span class="toc-text">20.FTP  的主动模式和被动模式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#21、显示-etc-inittab中以-开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行。"><span class="toc-number">21.</span> <span class="toc-text">21、显示/etc/inittab中以#开头，且后面跟了一个或者多个空白字符，而后又跟了任意非空白字符的行。</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#22-显示-etc-inittab中包含了-一个数字-即两个冒号中间一个数字-的行"><span class="toc-number">22.</span> <span class="toc-text">22.显示/etc/inittab中包含了:一个数字:(即两个冒号中间一个数字)的行</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#23、怎么把脚本添加到系统服务里，即用service来调用"><span class="toc-number">23.</span> <span class="toc-text">23、怎么把脚本添加到系统服务里，即用service来调用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#24、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符"><span class="toc-number">24.</span> <span class="toc-text">24、写一个脚本，实现批量添加20个用户，用户名为user01-20，密码为user后面跟5个随机字符</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#25、写一个脚本，实现判断192-168-1-0-24网络里，当前在线的IP有哪些，能ping通则认为在线"><span class="toc-number">25.</span> <span class="toc-text">25、写一个脚本，实现判断192.168.1.0/24网络里，当前在线的IP有哪些，能ping通则认为在线</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#27、写一个脚本：-26-包括3个小题"><span class="toc-number">26.</span> <span class="toc-text">27、写一个脚本：(26  包括3个小题)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#28、写一个脚本：（27-包括2个小题）"><span class="toc-number">27.</span> <span class="toc-text">28、写一个脚本：（27  包括2个小题）</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#28、如何让history命令显示具体时间？"><span class="toc-number">28.</span> <span class="toc-text">28、如何让history命令显示具体时间？</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-26296890-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>

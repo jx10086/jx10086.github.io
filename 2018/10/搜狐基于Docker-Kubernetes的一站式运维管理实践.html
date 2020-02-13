@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html lang class="loading">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SRE日志 - DevOps_SRE_自动化运维</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate">
+    <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
+    <meta name="description" content="世界上的一切都是唯一的,"> 
+    <meta name="author" content="Root"> 
+    <link rel="alternative" href="atom.xml" title="SRE日志" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+    <link rel="stylesheet" href="/css/diaspora.css">
+</head>
+</html>
+<body class="loading">
+    <div id="loader"></div>
+    <div id="single">
+    <div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <a class="icon-home image-icon" href="javascript:;"></a>
+    <div title="播放/暂停" class="icon-play"></div>
+    <h3 class="subtitle">搜狐基于Docker+Kubernetes的一站式运维管理实践</h3>
+    <div class="social">
+        <!--<div class="like-icon">-->
+            <!--<a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+        <!--</div>-->
+        <div>
+            <div class="share">
+                <a title="获取二维码" class="icon-scan" href="javascript:;"></a>
+            </div>
+            <div id="qr"></div>
+        </div>
+    </div>
+    <div class="scrollbar"></div>
+</div>
+    <div class="section">
+        <div class="article">
+    <div class='main'>
+        <h1 class="title">搜狐基于Docker+Kubernetes的一站式运维管理实践</h1>
+        <div class="stuff">
+            <span>十月 22, 2018</span>
+            
+  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/docker/">docker</a></li></ul>
+
+
+        </div>
+        <div class="content markdown">
+            <h1 id="搜狐基于Docker-Kubernetes的一站式运维管理实践"><a href="#搜狐基于Docker-Kubernetes的一站式运维管理实践" class="headerlink" title="搜狐基于Docker+Kubernetes的一站式运维管理实践"></a>搜狐基于Docker+Kubernetes的一站式运维管理实践</h1><pre><code>DomeOS是基于Docker的企业级私有云一站式运维管理系统。DomeOS采用私有云模式，实现用户私有集群的容器化管理和资源智能化分配，提供全流程标准化的主机管理、应用持续集成、镜像构建、部署管理、容器运维和多层级监控服务。本次分享介绍我们在设计与开发DomeOS中采用的技术与方案，抛砖引玉，与大家一起探讨如何利用Docker实现自动化服务运维管理。
+</code></pre><blockquote>
+<h1 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h1></blockquote>
+<p>2015年下半年，搜狐北京研发中心基于Docker和Kubernetes开发了一套企业级的一站式运维管理系统——DomeOS。该系统是一个持续交付和自动运维平台，解决用户从代码自动编译打包，到线上运行维护的全套需求，采用私有云模式，实现了用户私有集群的容器化管理和资源智能分配。</p>
+<blockquote>
+<h1 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h1></blockquote>
+<p><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/22998617.jpg" alt><br>DomeOS Server是整个系统的控制模块，前端和所有逻辑控制均在这部分实现。<br>MySQL用来存储项目、部署、用户、监控等数据信息。<br>Server可以关联到代码仓库，目前支持GitLab和SVN。<br>Registry是Docker提供的开源私有仓库，我们对它进行了改造，可以对接到搜狐云台的存储系统，保证了镜像的安全性和可靠性。<br>资源分配、任务调度部分交给Kubernetes来完成。<br>监控部分融合了open-falcon和cAdvisor，实现了主机和容器多个维度信息的收集展示。<br>另外，为了方便研发及运维同学在部署过程中快速定位问题，加入了WebSSH模块，能够通过网页直接进入到容器内部查看信息。DomeOS支持LDAP登录，方便企业用户使用。</p>
+<blockquote>
+<h1 id="功能模块"><a href="#功能模块" class="headerlink" title="功能模块"></a>功能模块</h1></blockquote>
+<p>DomeOS提供了项目管理、持续集成、部署管理、镜像管理、集群管理、应用商店、用户和组管理以及多层级监控服务。以下是功能模块图：<br><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/16054155.jpg" alt><br>其中项目管理、集群管理和部署是比较重要的功能。</p>
+<p>项目管理中包含了持续集成，设计方案如下：<br><img src="http://7xsp8d.com1.z0.glb.clouddn.com/16-4-7/34605215.jpg" alt><br>用户在代码仓库的操作，通过Webhooks将操作信息发送给DomeOS Server，Server根据项目关联配置信息确认是否满足构建任务的出发条件，如果满足，Domeos Server下发构建任务给Kubernetes Master，master挑选符合条件的slave启动构建镜像，该镜像从代码仓库中下载代码，根据对应的Dockerfile执行构建，构建生成的镜像被push到代码仓库中，然后反馈构建日志及结果给DomeOS Server，Server在仓库中确认过镜像信息后，将构建结果写入到数据库中。<br>集群管理部分，我们将一套Kubernetes部署作为一套集群，添加集群是配置Kubernetes Master信息的过程，用户可以在DomeOS中添加多套集群。</p>
+<p>当master信息配置完成后，我们提供了添加Node的脚本。对于一套集群，网络部分采用Flannel进行管理，每个Node上启动Agent上报监控信息并用于WebSSH登录。用户可以通过为主机添加Namespace和label进行资源和环境的隔离。</p>
+<blockquote>
+<h1 id="部署管理部分"><a href="#部署管理部分" class="headerlink" title="部署管理部分"></a>部署管理部分</h1></blockquote>
+<p>部署启动在一个集群上，采用Kubernetes Pod的概念，每个部署都从一个或多个镜像创建，可以对每个镜像配置CPU和内存限制，可以在Pod中配置一个或多个日志收集模块，该部分用Flume实现，日志收集到kafka中。网络部分目前支持overlay和host两种模式，overlay模式的负载均衡用Kubernetes的Service实现，host模式的负载均衡通过Confd+Nginx来实现。同一套集群的部署之间可以通过内网域名互相访问，这部分通过skyDNS和kube2sky来实现。</p>
+<p>每套部署可以建立多个版本，升级回滚采用不同版本之间的切换完成。扩容缩容通过Kubernetes的Replication Controller实现。</p>
+<p>下面是DomeOS的介绍网站 <a href="http://domeos.org/，我们对项目代码进行了开源" target="_blank" rel="noopener">http://domeos.org/，我们对项目代码进行了开源</a> <a href="https://github.com/domeos，欢迎有兴趣的小伙伴试用，提出宝贵的意见和建议。" target="_blank" rel="noopener">https://github.com/domeos，欢迎有兴趣的小伙伴试用，提出宝贵的意见和建议。</a></p>
+<h1 id="Q-amp-A"><a href="#Q-amp-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1><blockquote>
+<p> Q：“可以在Pod中配置一个或多个日志收集模块，该部分用Flume实现” 这块能具体说下吗？</p>
+</blockquote>
+<p>A：我们把Flume做成了一个镜像，利用Kubernetes的Empty Directories来收集其他容器产生的日志。</p>
+<blockquote>
+<p>Q：我想问下 容器内监控是怎么实现的？每个容器安装open-falcon的Agent吗？</p>
+</blockquote>
+<p>A：每个Node上会启动一个Agent，通过Agent收集主机和容器的信息，Agent集成了open-falcon的Agent和cAdvisor。</p>
+<blockquote>
+<p>Q：自动化构建过程中，对应用的测试是怎么实现的？</p>
+</blockquote>
+<p>A：单元测试可以在编译的时候完成，功能测试需要启动部署。</p>
+<blockquote>
+<p>Q：你们的部署环境是同时使用了overlay模式和host模式吗，对于预防潜在的冲突你们有什么好的建议？</p>
+</blockquote>
+<p>A：我们主要对端口冲突做了严格限制，host模式下提供了自动寻找20000~21000段可用端口的插件，overlay模式会根据数据库中配置检测冲突。</p>
+<blockquote>
+<p>Q：使用Kubernetes编排容器后，你们怎么做服务发现的？如何解决容器间互相调用问题，及容器外调容器内服务问题？</p>
+</blockquote>
+<p>A：我们用skyDNS做服务发现，容器间相互调用可以用内部域名，Kubernetes集群内的主机通过修改DNS服务器配置也可以通过内部域名访问容器。</p>
+<blockquote>
+<p>Q：项目有什么瓶颈吗？</p>
+</blockquote>
+<p>A：Kubernetes的部署比较复杂，我们做的是私有云下的管理，不同系统下部署会有各种各样的问题。</p>
+<blockquote>
+<p>Q：刚刚提到WebSSH在Agent里封装了docker exec，当在master执行某容器的命令时，具体是如何控制Node节点执行docker exec的，Agent封装是自己开发的吗，还是借用一些第三方工具，Kubernetes好像也有kubectl exec？</p>
+</blockquote>
+<p>A：WebSSH有Server端和Agent端，Agent在每个Node节点上，Server只要一个就够了。kubectl也可以exec，不过采用的是Kubernetes自定义的连接协议，性能也不如我们目前采用的方案。</p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+                <ul id="audio-list" style="display:none">
+                    
+                        <li title='0' data-url='https://link.hhtjim.com/qq/0022R1L82mb8Hp.mp3'></li>
+                    
+                        <li title='1' data-url='https://link.hhtjim.com/qq/001faIUs4M2zna.mp3'></li>
+                    
+                </ul>
+            
+        </div>
+        
+    <div id='gitalk-container' class="comment link"
+        data-ae='false'
+        data-ci=''
+        data-cs=''
+        data-r=''
+        data-o=''
+        data-a=''
+        data-d='false'
+    >查看评论</div>
+
+
+    </div>
+    
+        <div class='side'>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#搜狐基于Docker-Kubernetes的一站式运维管理实践"><span class="toc-number">1.</span> <span class="toc-text">搜狐基于Docker+Kubernetes的一站式运维管理实践</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#项目简介"><span class="toc-number">2.</span> <span class="toc-text">项目简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#整体架构"><span class="toc-number">3.</span> <span class="toc-text">整体架构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#功能模块"><span class="toc-number">4.</span> <span class="toc-text">功能模块</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#部署管理部分"><span class="toc-number">5.</span> <span class="toc-text">部署管理部分</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Q-amp-A"><span class="toc-number">6.</span> <span class="toc-text">Q&amp;A</span></a></li></ol>
+        </div>
+    
+</div>
+
+
+    </div>
+</div>
+</body>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+<script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/diaspora.js"></script>
+<link rel="stylesheet" href="/photoswipe/photoswipe.css">
+<link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+<script src="/photoswipe/photoswipe.min.js"></script>
+<script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-26296890-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+
+</html>
