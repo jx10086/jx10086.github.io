@@ -1,25 +1,29 @@
 
 <!DOCTYPE html>
-<html lang class="loading">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SRE日志 - DevOps_SRE_自动化运维</title>
 
-    <meta name="referrer" content="no-referrer">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate">
+    <meta name="google" content="notranslate" />
     <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
     <meta name="description" content="世界上的一切都是唯一的,"> 
     <meta name="author" content="Root"> 
     <link rel="alternative" href="atom.xml" title="SRE日志" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <link rel="stylesheet" href="/css/diaspora.css">
-</head>
-</html>
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body class="loading">
     <div id="loader"></div>
     <div id="single">
@@ -48,7 +52,7 @@
         <div class="stuff">
             <span>十月 22, 2018</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/MySQL/">MySQL</a></li></ul>
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/MySQL/" rel="tag">MySQL</a></li></ul>
 
 
         </div>
@@ -57,11 +61,12 @@
 <p>以上命令适用于Ubuntu和Debian。CentOS、Fedora和RHEL下使用mysqld替换mysql。</p>
 <h2 id="以安全模式启动mysql："><a href="#以安全模式启动mysql：" class="headerlink" title="以安全模式启动mysql："></a>以安全模式启动mysql：</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysqld_safe --skip-grant-tables --skip-networking &amp;</span><br></pre></td></tr></table></figure>
 <p>注意我们加了–skip-networking，避免远程无密码登录MySQL。</p>
-<p>这样我们就可以直接用root登录，无需密码：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure></p>
-<h2 id="接着重设密码："><a href="#接着重设密码：" class="headerlink" title="接着重设密码："></a>接着重设密码：</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update user set password=PASSWORD("mynewpassword") where User='root';</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<p>这样我们就可以直接用root登录，无需密码：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root</span><br></pre></td></tr></table></figure>
+<h2 id="接着重设密码："><a href="#接着重设密码：" class="headerlink" title="接着重设密码："></a>接着重设密码：</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql<span class="operator">&gt;</span> use mysql;</span><br><span class="line">mysql<span class="operator">&gt;</span> update <span class="keyword">user</span> <span class="keyword">set</span> password<span class="operator">=</span>PASSWORD(&quot;mynewpassword&quot;) <span class="keyword">where</span> <span class="keyword">User</span><span class="operator">=</span><span class="string">&#x27;root&#x27;</span>;</span><br><span class="line">mysql<span class="operator">&gt;</span> flush privileges;</span><br></pre></td></tr></table></figure>
 <p>注意，命令后需要加分号。</p>
-<p>重设完毕后，我们退出，然后启动mysql服务：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; quit</span><br></pre></td></tr></table></figure></p>
-
+<p>重设完毕后，我们退出，然后启动mysql服务：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql <span class="operator">&gt;</span> quit</span><br></pre></td></tr></table></figure>
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
                 <source type="audio/mpeg" src="">
@@ -91,7 +96,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL重设root密码"><span class="toc-number">1.</span> <span class="toc-text">MySQL重设root密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#首先，我们停掉MySQL服务："><span class="toc-number">1.1.</span> <span class="toc-text">首先，我们停掉MySQL服务：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以安全模式启动mysql："><span class="toc-number">1.2.</span> <span class="toc-text">以安全模式启动mysql：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接着重设密码："><span class="toc-number">1.3.</span> <span class="toc-text">接着重设密码：</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E9%87%8D%E8%AE%BEroot%E5%AF%86%E7%A0%81"><span class="toc-number">1.</span> <span class="toc-text">MySQL重设root密码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A6%96%E5%85%88%EF%BC%8C%E6%88%91%E4%BB%AC%E5%81%9C%E6%8E%89MySQL%E6%9C%8D%E5%8A%A1%EF%BC%9A"><span class="toc-number">1.1.</span> <span class="toc-text">首先，我们停掉MySQL服务：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%A5%E5%AE%89%E5%85%A8%E6%A8%A1%E5%BC%8F%E5%90%AF%E5%8A%A8mysql%EF%BC%9A"><span class="toc-number">1.2.</span> <span class="toc-text">以安全模式启动mysql：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E7%9D%80%E9%87%8D%E8%AE%BE%E5%AF%86%E7%A0%81%EF%BC%9A"><span class="toc-number">1.3.</span> <span class="toc-text">接着重设密码：</span></a></li></ol></li></ol>
         </div>
     
 </div>
@@ -100,14 +105,22 @@
     </div>
 </div>
 </body>
+
 <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
 <script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/plugin.js"></script>
 <script src="/js/diaspora.js"></script>
+
+
 <link rel="stylesheet" href="/photoswipe/photoswipe.css">
 <link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
 <script src="/photoswipe/photoswipe.min.js"></script>
 <script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

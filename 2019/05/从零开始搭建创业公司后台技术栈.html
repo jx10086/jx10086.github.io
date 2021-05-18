@@ -1,25 +1,29 @@
 
 <!DOCTYPE html>
-<html lang class="loading">
-<head><meta name="generator" content="Hexo 3.9.0">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<html lang="" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SRE日志 - DevOps_SRE_自动化运维</title>
 
-    <meta name="referrer" content="no-referrer">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate">
+    <meta name="google" content="notranslate" />
     <meta name="keywords" content="sre,运维,Linux,oracle,数据库,网络,MySQL,云计算,Docker,K8s,信息安全,Hack,"> 
     <meta name="description" content="世界上的一切都是唯一的,"> 
     <meta name="author" content="Root"> 
     <link rel="alternative" href="atom.xml" title="SRE日志" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-    <link rel="stylesheet" href="/css/diaspora.css">
-</head>
-</html>
+    
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+
+    
+<link rel="stylesheet" href="/css/diaspora.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
 <body class="loading">
     <div id="loader"></div>
     <div id="single">
@@ -48,13 +52,13 @@
         <div class="stuff">
             <span>五月 08, 2019</span>
             
-  <ul class="post-tags-list"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/技术管理/">技术管理</a></li></ul>
+  <ul class="post-tags-list" itemprop="keywords"><li class="post-tags-list-item"><a class="post-tags-list-link" href="/tags/%E6%8A%80%E6%9C%AF%E7%AE%A1%E7%90%86/" rel="tag">技术管理</a></li></ul>
 
 
         </div>
         <div class="content markdown">
             <h1 id="从零开始搭建创业公司后台技术栈"><a href="#从零开始搭建创业公司后台技术栈" class="headerlink" title="从零开始搭建创业公司后台技术栈"></a>从零开始搭建创业公司后台技术栈</h1><p>说到后台技术栈，脑海中是不是浮现的是这样一幅图？</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack1.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack1.png"></p>
 <p>有点眼晕，以上只是我们会用到的一些语言的合集，而且只是语言层面的一部分，就整个后台技术栈来说，这只是一个开始，从语言开始，还有很多很多的内容。今天要说的后台是大后台的概念，放在服务器上的东西都属于后台的东西，比如使用的框架，语言，数据库，服务，操作系统等等，整个后台技术栈我的理解包括4个层面的内容：</p>
 <ul>
 <li>语言： 用了哪些开发语言，如：c++/java/go/php/python/ruby等等；</li>
@@ -63,7 +67,7 @@
 <li>系统：系统化建设，上面的流程需要有系统来保证，如：规范发布流程的发布系统，代码管理系统等等；</li>
 </ul>
 <p>结合以上的的4个层面的内容，整个后台技术栈的结构如图2所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack2.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack2.png"></p>
 <p>[图2 后台技术栈结构]</p>
 <p>以上的这些内容都需要我们从零开始搭建，在创业公司，没有大公司那些完善的基础设施，需要我们从开源界，从云服务商甚至有些需要自己去组合，去拼装，去开发一个适合自己的组件或系统以达成我们的目标。咱们一个个系统和组件的做选型，最终形成我们的后台技术栈。</p>
 <h2 id="一、各系统组件选型"><a href="#一、各系统组件选型" class="headerlink" title="一、各系统组件选型"></a>一、各系统组件选型</h2><h3 id="1、项目管理-Bug管理-问题管理"><a href="#1、项目管理-Bug管理-问题管理" class="headerlink" title="1、项目管理/Bug管理/问题管理"></a>1、项目管理/Bug管理/问题管理</h3><p>项目管理软件是整个业务的需求，问题，流程等等的集中地，大家的跨部门沟通协同大多依赖于项目管理工具。有一些 SAAS 的项目管理服务可以使用，但是很多时间不满足需求，此时我们可以选择一些开源的项目，这些项目本身有一定的定制能力，有丰富的插件可以使用，一般的创业公司需求基本上都能得到满足，常用的项目如下：</p>
@@ -111,7 +115,7 @@
 <li>Dubbo: Dubbo 是阿里巴巴公司开源的一个 Java 高性能优秀的服务框架，使得应用可通过高性能的 RPC 实现服务的输出和输入功能，可以和 Spring 框架无缝集成。当年在淘宝内部，Dubbo 由于跟淘宝另一个类似的框架 HSF 有竞争关系，导致 Dubbo 团队解散，最近又活过来了，有专职同学投入。</li>
 <li>DubboX: DubboX 是由当当在基于 Dubbo 框架扩展的一个 RPC 框架，支持 REST 风格的远程调用、Kryo/FST 序列化，增加了一些新的feature。</li>
 <li>Motan: Motan 是新浪微博开源的一个 Java 框架。它诞生的比较晚，起于 2013 年，2016 年 5 月开源。Motan 在微博平台中已经广泛应用，每天为数百个服务完成近千亿次的调用。</li>
-<li>rpcx: rpcx 是一个类似阿里巴巴<a href="http://dubbo.io/" target="_blank" rel="noopener">Dubbo</a> 和微博 <a href="https://github.com/weibocom/motan" target="_blank" rel="noopener">Motan</a> 的分布式的 RPC 服务框架，基于 Golang net/rpc 实现。但是 rpcx 基本只有一个人在维护，没有完善的社区，使用前要慎重，之前做 Golang 的 RPC 选型时也有考虑这个，最终还是放弃了，选择了 gRPC，如果想自己自研一个 RPC 框架，可以参考学习一下。</li>
+<li>rpcx: rpcx 是一个类似阿里巴巴<a target="_blank" rel="noopener" href="http://dubbo.io/">Dubbo</a> 和微博 <a target="_blank" rel="noopener" href="https://github.com/weibocom/motan">Motan</a> 的分布式的 RPC 服务框架，基于 Golang net/rpc 实现。但是 rpcx 基本只有一个人在维护，没有完善的社区，使用前要慎重，之前做 Golang 的 RPC 选型时也有考虑这个，最终还是放弃了，选择了 gRPC，如果想自己自研一个 RPC 框架，可以参考学习一下。</li>
 </ul>
 <h3 id="6、名字发现-服务发现"><a href="#6、名字发现-服务发现" class="headerlink" title="6、名字发现/服务发现"></a>6、名字发现/服务发现</h3><p>名字发现和服务发现分为两种模式，一个是客户端发现模式，一种是服务端发现模式。</p>
 <p>框架中常用的服务发现是客户端发现模式。</p>
@@ -137,12 +141,14 @@
 </li>
 </ol>
 <p>传统关系数据库用得最多的是 MySQL，成熟，稳定，一些基本的需求都能满足，在一定数据量级之前基本单机传统数据库都可以搞定，而且现在较多的开源系统都是基于 MySQL，开箱即用，再加上主从同步和前端缓存，百万 pv 的应用都可以搞定了。不过 CentOS 7 已经放弃了 MySQL，而改使用 MariaDB。MariaDB 数据库管理系统是 MySQ L的一个分支，主要由开源社区在维护，采用GPL 授权许可。开发这个分支的原因之一是：甲骨文公司收购了 MySQL 后，有将 MySQ L闭源的潜在风险，因此社区采用分支的方式来避开这个风险。</p>
-<p>在 Google 发布了 <a href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41344.pdf" target="_blank" rel="noopener">F1: A Distributed SQL Database That Scales</a> 和 <a href="http://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf" target="_blank" rel="noopener">Spanner: Google’s Globally-Distributed Databasa </a>之后，业界开始流行起 NewSQL。于是有了 CockroachDB，于是有了 奇叔公司的 TiDB。国内已经有比较多的公司使用 TiDB，之前在创业公司时在大数据分析时已经开始应用 TiDB，当时应用的主要原因是 MySQL 要使用分库分表，逻辑开发比较复杂，扩展性不够。</p>
+<p>在 Google 发布了 <a target="_blank" rel="noopener" href="http://static.googleusercontent.com/media/research.google.com/en//pubs/archive/41344.pdf">F1: A Distributed SQL Database That Scales</a> 和 <a target="_blank" rel="noopener" href="http://static.googleusercontent.com/media/research.google.com/en//archive/spanner-osdi2012.pdf">Spanner: Google’s Globally-Distributed Databasa </a>之后，业界开始流行起 NewSQL。于是有了 CockroachDB，于是有了 奇叔公司的 TiDB。国内已经有比较多的公司使用 TiDB，之前在创业公司时在大数据分析时已经开始应用 TiDB，当时应用的主要原因是 MySQL 要使用分库分表，逻辑开发比较复杂，扩展性不够。</p>
 <h3 id="8、NoSQL"><a href="#8、NoSQL" class="headerlink" title="8、NoSQL"></a>8、NoSQL</h3><p>NoSQL 顾名思义就是 Not-Only SQL，也有人说是 No – SQL, 个人偏向于Not – Only SQL,它并不是用来替代关系库，而是作为关系型数据库的补充而存在。</p>
 <p>常见 NoSQL 有4个类型：</p>
 <ol>
-<li>键值，适用于内容缓存，适合混合工作负载并发高扩展要求大的数据集，其优点是简单，查询速度快，缺点是缺少结构化数据，常见的有 Redis, Memcache, BerkeleyDB 和 Voldemort 等等；</li>
-<li>列式，以列簇式存储，将同一列数据存在一起，常见于分布式的文件系统，其中以 Hbase，Cassandra 为代表。Cassandra 多用于写多读少的场景，国内用得比较多的有 360，大概 1500 台机器的集群，国外大规模使用的公司比较多，如 Ebay，Instagram，Apple 和沃尔玛等等；</li>
+<li><p>键值，适用于内容缓存，适合混合工作负载并发高扩展要求大的数据集，其优点是简单，查询速度快，缺点是缺少结构化数据，常见的有 Redis, Memcache, BerkeleyDB 和 Voldemort 等等；</p>
+</li>
+<li><p>列式，以列簇式存储，将同一列数据存在一起，常见于分布式的文件系统，其中以 Hbase，Cassandra 为代表。Cassandra 多用于写多读少的场景，国内用得比较多的有 360，大概 1500 台机器的集群，国外大规模使用的公司比较多，如 Ebay，Instagram，Apple 和沃尔玛等等；</p>
+</li>
 <li><p>文档，数据存储方案非常适用承载大量不相关且结构差别很大的复杂信息。性能介于 kv 和关系数据库之间，它的灵感来于 lotus notes，常见的有 MongoDB，CouchDB 等等；</p>
 </li>
 <li><p>图形，图形数据库擅长处理任何涉及关系的状况。社交网络，推荐系统等。专注于构建关系图谱，需要对整个图做计算才能得出结果，不容易做分布式的集群方案，常见的有 Neo4J，InfoGrid 等。</p>
@@ -160,7 +166,7 @@
 </li>
 </ul>
 <p>业界消息中间件是一个非常通用的东西，大家在做选型时有使用开源的，也有自己造轮子的，甚至有直接用 MySQL 或 Redis 做队列的，关键看是否满足你的需求，如果是使用开源的项目，以下的表格在选型时可以参考：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack3.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack3.png"></p>
 <p>[图3]</p>
 <p>以上图的纬度为：名字 成熟度所属社区/公司 文档 授权方式 开发语言支持的协议 客户端支持的语言 性能 持久化 事务 集群 负载均衡 管理界面 部署方式 评价</p>
 <h3 id="10-、代-码管理"><a href="#10-、代-码管理" class="headerlink" title="10 、代 码管理"></a>10 、代 码管理</h3><p>代码是互联网创业公司的命脉之一，代码管理很重要，常见的考量点包括两块：</p>
@@ -177,7 +183,7 @@
 </li>
 <li><p>Strider： Strider 是一个开源的持续集成和部署平台，使用 Node.js 实现，存储使用的是 MongoDB，BSD 许可证，概念上类似 Travis 和Jenkins。</p>
 </li>
-<li><p>GitLabCI：从GitLab8.0开始，GitLab CI 就已经集成在 GitLab，我们只要在项目中添加一个 .gitlab-ci.yml 文件，然后添加一个Runner，即可进行持续集成。并且 Gitlab 与 Docker 有着非常好的相互协作的能力。免费版与付费版本不同可以参见这里：<a href="https://about.gitlab.com/products/feature-comparison/" target="_blank" rel="noopener">https://about.gitlab.com/products/feature-comparison/</a></p>
+<li><p>GitLabCI：从GitLab8.0开始，GitLab CI 就已经集成在 GitLab，我们只要在项目中添加一个 .gitlab-ci.yml 文件，然后添加一个Runner，即可进行持续集成。并且 Gitlab 与 Docker 有着非常好的相互协作的能力。免费版与付费版本不同可以参见这里：<a target="_blank" rel="noopener" href="https://about.gitlab.com/products/feature-comparison/">https://about.gitlab.com/products/feature-comparison/</a></p>
 </li>
 <li><p>Travis：Travis 和 Github 强关联；闭源代码使用 SaaS 还需考虑安全问题； 不可定制；开源项目免费，其它收费；</p>
 </li>
@@ -196,10 +202,10 @@
 </ul>
 <p>Filebeat 已经完全替代了 Logstash-Forwarder 成为新一代的日志采集器，同时鉴于它轻量、安全等特点，越来越多人开始使用它。</p>
 <p>因为免费的 ELK 没有任何安全机制，所以这里使用了 Nginx 作反向代理，避免用户直接访问 Kibana 服务器。加上配置 Nginx 实现简单的用户认证，一定程度上提高安全性。另外，Nginx 本身具有负载均衡的作用，能够提高系统访问性能。ELK 架构如图4所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack4_elk.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack4_elk.png"></p>
 <p>[图4] ELK 流程图</p>
 <p>对于有实时计算的需求，可以使用 Flume+Kafka+Storm+MySQL方案，一 般架构如图5所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack5_flume.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack5_flume.png"></p>
 <p>[图5] 实时分析系统架构图</p>
 <p>其中：</p>
 <ul>
@@ -208,11 +214,11 @@
 </ul>
 <p>Kafka 追求的是高吞吐量、高负载，Flume 追求的是数据的多样性，二者结合起来简直完美。</p>
 <h3 id="13、监控系统"><a href="#13、监控系统" class="headerlink" title="13、监控系统"></a>13、监控系统</h3><p>监控系统只包含与后台相关的，这里主要是两块，一个是操作系统层的监控，比如机器负载，IO，网络流量，CPU，内存等操作系统指标的监控。另一个是服务质量和业务质量的监控，比如服务的可用性，成功率，失败率，容量，QPS 等等。常见业务的监控系统先有操作系统层面的监控（这部分较成熟），然后扩展出其它监控，如 zabbix，小米的 open-falcon，也有一出来就是两者都支持的，如 prometheu s。如果对业务监控要求比较高一些，在创业选型中建议可以优先考虑 prometheus。这里有一个有趣的分布，如图6所示</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack6_monitort.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack6_monitort.png"></p>
 <p>[图6 监控系统分布]</p>
 <p>亚洲区域使用 zabbix 较多，而美洲和欧洲，以及澳大利亚使用 prometheus 居多，换句话说，英文国家地区（发达国家？）使用prometheus 较多。</p>
 <p>Prometheus 是由 SoundCloud 开发的开源监控报警系统和时序列数据库( TSDB )。Prometheus 使用 Go 语言开发，是 Google BorgMon 监控系统的开源版本。相对于其它监控系统使用的 push 数据的方式，prometheus 使用的是 pull 的方式，其架构如图7所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack7_prometheus.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack7_prometheus.png"></p>
 <p>[图7] prometheus架构图</p>
 <p>如上图所示，prometheus 包含的主要组件如下：</p>
 <ul>
@@ -241,7 +247,7 @@
 </ul>
 <p>创业公司前期不需要这种复杂，直接上 zk，弄一个界面管理 zk 的内容，记录一下所有人的操作日志，程序直连 zk，或者或者用Qconf 等基于 zk 优化后的方案。</p>
 <h3 id="15、发布系统-部署系统"><a href="#15、发布系统-部署系统" class="headerlink" title="15、发布系统/部署系统"></a>15、发布系统/部署系统</h3><p>从软件生产的层面看，代码到最终服务的典型流程如图8所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack8_deploy.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack8_deploy.png"></p>
 <p>[图8 流程图]</p>
 <p>从上图中可以看出，从开发人员写下代码到服务最终用户是一个漫长过程，整体可以分成三个阶段：</p>
 <ul>
@@ -259,7 +265,7 @@
 <li>速度的选择(ansiblevssaltstack) ansible基于SSH协议传输数据，Saltstack使用消息队列zeroMQ传输数据；大规模并发的能力对于几十台-200台规模的兄弟来讲，ansible的性能也可接受，如果一次操作上千台，用salt好一些。</li>
 </ol>
 <p>如图9所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_statck9_mach.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_statck9_mach.png"></p>
 <p>[图9 机器管理软件对比]</p>
 <p>一般创业公司选择 Ansible 能解决大部问题，其简单，不需要安装额外的客户端，可以从命令行来运行，不需要使用配置文件。至于比较复杂的任务，Ansible 配置通过名为 Playbook 的配置文件中的 YAML 语法来加以处理。Playbook 还可以使用模板来扩展其功能。</p>
 <h2 id="二、创业公司的选择"><a href="#二、创业公司的选择" class="headerlink" title="二、创业公司的选择"></a>二、创业公司的选择</h2><h3 id="1、选择合适的语言"><a href="#1、选择合适的语言" class="headerlink" title="1、选择合适的语言"></a>1、选择合适的语言</h3><ul>
@@ -296,13 +302,13 @@
 <p>向未来看一眼，在一年到三年内，我们需要做出改变吗？技术栈要做根本性的改变吗？如果组织发展很快，在 200 人，500 人时，现有的技术栈是否需要大动？</p>
 <p>创业过程中需要考虑成本，这里的成本不仅仅是花费多少钱，付出多少工资，有时更重要的是时间成本，很多业务在创业时大家拼的就是时间，就是一个时间窗，过了就没你什么事儿了。</p>
 <h2 id="三、基于云的创业公司后台技术架构"><a href="#三、基于云的创业公司后台技术架构" class="headerlink" title="三、基于云的创业公司后台技术架构"></a>三、基于云的创业公司后台技术架构</h2><p>结合上面内容的考量，在对一个个系统和组件的做选型之后，以云服务为基础，一个创业公司的后台技术架构如图10所示：</p>
-<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack10_arch.png" alt></p>
+<p><img src="https://phppan.gitbooks.io/startup-tech/content/assets/svr_stack10_arch.png"></p>
 <p>[图10 后台技术架构]</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://database.51cto.com/art/201109/291781.htm" target="_blank" rel="noopener">http://database.51cto.com/art/201109/291781.htm</a></p>
-<p><a href="https://zh.wikipedia.org/wiki/Kafka" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Kafka</a></p>
-<p><a href="https://prometheus.io/docs/introduction/overview/" target="_blank" rel="noopener">https://prometheus.io/docs/introduction/overview/</a></p>
-<p><a href="http://deadline.top/2016/11/23/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E9%82%A3%E7%82%B9%E4%BA%8B/" target="_blank" rel="noopener">http://deadline.top/2016/11/23/配置中心那点事/</a></p>
-<p><a href="http://blog.fit2cloud.com/2016/01/26/deployment-system.html" target="_blank" rel="noopener">http://blog.fit2cloud.com/2016/01/26/deployment-system.html</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="http://database.51cto.com/art/201109/291781.htm">http://database.51cto.com/art/201109/291781.htm</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Kafka">https://zh.wikipedia.org/wiki/Kafka</a></p>
+<p><a target="_blank" rel="noopener" href="https://prometheus.io/docs/introduction/overview/">https://prometheus.io/docs/introduction/overview/</a></p>
+<p><a target="_blank" rel="noopener" href="http://deadline.top/2016/11/23/%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E9%82%A3%E7%82%B9%E4%BA%8B/">http://deadline.top/2016/11/23/配置中心那点事/</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.fit2cloud.com/2016/01/26/deployment-system.html">http://blog.fit2cloud.com/2016/01/26/deployment-system.html</a></p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls" data-autoplay="false">
@@ -333,7 +339,7 @@
     </div>
     
         <div class='side'>
-            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#从零开始搭建创业公司后台技术栈"><span class="toc-number">1.</span> <span class="toc-text">从零开始搭建创业公司后台技术栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、各系统组件选型"><span class="toc-number">1.1.</span> <span class="toc-text">一、各系统组件选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、项目管理-Bug管理-问题管理"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、项目管理/Bug管理/问题管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、DNS"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、LB-负载均衡"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、LB(负载均衡)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、CDN"><span class="toc-number">1.1.4.</span> <span class="toc-text">4、CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、RPC框架"><span class="toc-number">1.1.5.</span> <span class="toc-text">5、RPC框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、名字发现-服务发现"><span class="toc-number">1.1.6.</span> <span class="toc-text">6、名字发现/服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、关系数据库"><span class="toc-number">1.1.7.</span> <span class="toc-text">7、关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、NoSQL"><span class="toc-number">1.1.8.</span> <span class="toc-text">8、NoSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9、消息中间件"><span class="toc-number">1.1.9.</span> <span class="toc-text">9、消息中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-、代-码管理"><span class="toc-number">1.1.10.</span> <span class="toc-text">10 、代 码管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11、持续集成"><span class="toc-number">1.1.11.</span> <span class="toc-text">11、持续集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12、日志系统"><span class="toc-number">1.1.12.</span> <span class="toc-text">12、日志系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13、监控系统"><span class="toc-number">1.1.13.</span> <span class="toc-text">13、监控系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14、配置系统"><span class="toc-number">1.1.14.</span> <span class="toc-text">14、配置系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15、发布系统-部署系统"><span class="toc-number">1.1.15.</span> <span class="toc-text">15、发布系统/部署系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16、跳板机"><span class="toc-number">1.1.16.</span> <span class="toc-text">16、跳板机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17、机器管理"><span class="toc-number">1.1.17.</span> <span class="toc-text">17、机器管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、创业公司的选择"><span class="toc-number">1.2.</span> <span class="toc-text">二、创业公司的选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、选择合适的语言"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、选择合适的语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、选择合适的组件和云服务商"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、选择合适的组件和云服务商</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、制定流程和规范"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、制定流程和规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、自研和选型合适的辅助系统"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、自研和选型合适的辅助系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、选择过程中需要思考的问题"><span class="toc-number">1.2.5.</span> <span class="toc-text">5、选择过程中需要思考的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三、基于云的创业公司后台技术架构"><span class="toc-number">1.3.</span> <span class="toc-text">三、基于云的创业公司后台技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%88%9B%E4%B8%9A%E5%85%AC%E5%8F%B8%E5%90%8E%E5%8F%B0%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="toc-number">1.</span> <span class="toc-text">从零开始搭建创业公司后台技术栈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%90%84%E7%B3%BB%E7%BB%9F%E7%BB%84%E4%BB%B6%E9%80%89%E5%9E%8B"><span class="toc-number">1.1.</span> <span class="toc-text">一、各系统组件选型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86-Bug%E7%AE%A1%E7%90%86-%E9%97%AE%E9%A2%98%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.1.</span> <span class="toc-text">1、项目管理&#x2F;Bug管理&#x2F;问题管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81DNS"><span class="toc-number">1.1.2.</span> <span class="toc-text">2、DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81LB-%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">1.1.3.</span> <span class="toc-text">3、LB(负载均衡)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81CDN"><span class="toc-number">1.1.4.</span> <span class="toc-text">4、CDN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81RPC%E6%A1%86%E6%9E%B6"><span class="toc-number">1.1.5.</span> <span class="toc-text">5、RPC框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6%E3%80%81%E5%90%8D%E5%AD%97%E5%8F%91%E7%8E%B0-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0"><span class="toc-number">1.1.6.</span> <span class="toc-text">6、名字发现&#x2F;服务发现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7%E3%80%81%E5%85%B3%E7%B3%BB%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.7.</span> <span class="toc-text">7、关系数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8%E3%80%81NoSQL"><span class="toc-number">1.1.8.</span> <span class="toc-text">8、NoSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9%E3%80%81%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6"><span class="toc-number">1.1.9.</span> <span class="toc-text">9、消息中间件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-%E3%80%81%E4%BB%A3-%E7%A0%81%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.10.</span> <span class="toc-text">10 、代 码管理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11%E3%80%81%E6%8C%81%E7%BB%AD%E9%9B%86%E6%88%90"><span class="toc-number">1.1.11.</span> <span class="toc-text">11、持续集成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12%E3%80%81%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.12.</span> <span class="toc-text">12、日志系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13%E3%80%81%E7%9B%91%E6%8E%A7%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.13.</span> <span class="toc-text">13、监控系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14%E3%80%81%E9%85%8D%E7%BD%AE%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.14.</span> <span class="toc-text">14、配置系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15%E3%80%81%E5%8F%91%E5%B8%83%E7%B3%BB%E7%BB%9F-%E9%83%A8%E7%BD%B2%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.1.15.</span> <span class="toc-text">15、发布系统&#x2F;部署系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#16%E3%80%81%E8%B7%B3%E6%9D%BF%E6%9C%BA"><span class="toc-number">1.1.16.</span> <span class="toc-text">16、跳板机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#17%E3%80%81%E6%9C%BA%E5%99%A8%E7%AE%A1%E7%90%86"><span class="toc-number">1.1.17.</span> <span class="toc-text">17、机器管理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E4%B8%9A%E5%85%AC%E5%8F%B8%E7%9A%84%E9%80%89%E6%8B%A9"><span class="toc-number">1.2.</span> <span class="toc-text">二、创业公司的选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="toc-number">1.2.1.</span> <span class="toc-text">1、选择合适的语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E7%BB%84%E4%BB%B6%E5%92%8C%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%95%86"><span class="toc-number">1.2.2.</span> <span class="toc-text">2、选择合适的组件和云服务商</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%88%B6%E5%AE%9A%E6%B5%81%E7%A8%8B%E5%92%8C%E8%A7%84%E8%8C%83"><span class="toc-number">1.2.3.</span> <span class="toc-text">3、制定流程和规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E8%87%AA%E7%A0%94%E5%92%8C%E9%80%89%E5%9E%8B%E5%90%88%E9%80%82%E7%9A%84%E8%BE%85%E5%8A%A9%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.4.</span> <span class="toc-text">4、自研和选型合适的辅助系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E9%80%89%E6%8B%A9%E8%BF%87%E7%A8%8B%E4%B8%AD%E9%9C%80%E8%A6%81%E6%80%9D%E8%80%83%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.5.</span> <span class="toc-text">5、选择过程中需要思考的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9F%BA%E4%BA%8E%E4%BA%91%E7%9A%84%E5%88%9B%E4%B8%9A%E5%85%AC%E5%8F%B8%E5%90%8E%E5%8F%B0%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">三、基于云的创业公司后台技术架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">1.4.</span> <span class="toc-text">参考资料</span></a></li></ol></li></ol>
         </div>
     
 </div>
@@ -342,14 +348,22 @@
     </div>
 </div>
 </body>
+
 <script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
 <script src="//lib.baomitu.com/jquery/1.8.3/jquery.min.js"></script>
 <script src="/js/plugin.js"></script>
 <script src="/js/diaspora.js"></script>
+
+
 <link rel="stylesheet" href="/photoswipe/photoswipe.css">
 <link rel="stylesheet" href="/photoswipe/default-skin/default-skin.css">
+
+
 <script src="/photoswipe/photoswipe.min.js"></script>
 <script src="/photoswipe/photoswipe-ui-default.min.js"></script>
+
 
 <!-- Root element of PhotoSwipe. Must have class pswp. -->
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
